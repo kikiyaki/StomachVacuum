@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">StomachVacuum</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Entry activities -->
+
+    <string name="entry_first0">Добро пожаловать!</string>
+    <string name="entry_second0">\tДанное приложение об упражнении вакуум живота,
+        которое позволяет натренировать внутренние мышцы живота и уменьшить выпирающий или
+        свисающий живот, а также сделать талию уже</string>
+
+    <string name="entry_first1">Программа</string>
+    <string name="entry_second1">\tПриложение включает в себя три уровня сложности,
+        каждый рассчитан на 14 дней. В каждом дне имеется всего пять подходов упражнения,
+        которые в сумме займут не больше 7 минут</string>
+
+    <string name="entry_first2">Противопоказания</string>
+    <string name="entry_second2">\t• Заболевания желудочно-кишечного тракта
+    \n\t• Болезни сердца
+    \n\t• Грыжи
+    \n\t• Шесть месяцев после операций в брюшине и тазовой области
+    \n\t• Менструация и беременность
+    \n\t• Полный желудок. Упражнение нужно выполнять минимум через 3 часа после еды </string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <!-- Program selection activity -->
+
+    <string name="program_selection">Выбор программы</string>
+
+    <string name="beginner">Новичок</string>
+    <string name="medium">Средний</string>
+    <string name="advanced">Продвинутый</string>
+
+    <string name="th_day">-й День</string>
+
+    <!-- Day activity -->
+
+    <string name="stand_up">Вакуум стоя</string>
+    <string name="lying_down">Вакуум лежа</string>
+    <string name="table_top">Вакуум на четвереньках</string>
+
+    <string name="seconds">сек</string>
+    <string name="to_training">Начать</string>
+
+    <!-- Training activity -->
+
+    <string name="prepare">Приготовьтесь</string>
+    <string name="end_training">Завершить тренировку?</string>
+
+    <!-- RelaxDay activity -->
+
+    <string name="relax">Отдых</string>
+    <string name="skip">Пропустить</string>
+    <string name="next">Следующее</string>
+
+    <!-- EndDay activity -->
+
+    <string name="day_complete">План выполнен!</string>
+    <string name="to_program">Ок</string>
+
+    <!-- Help activity -->
+
+    <string name="stand_up_descr">\tОписание стоя</string>
+    <string name="lying_down_descr">\tОписание лежа</string>
+    <string name="table_top_descr">\tОписание на четв</string>
+
+    <!-- ProgramSelection activity -->
+
+    <string name="exit_from_app">Выйти из приложения?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+
+</resources>

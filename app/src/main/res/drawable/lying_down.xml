@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:drawable="@drawable/lying_down1" android:duration="300" />
+    <item android:drawable="@drawable/lying_down2" android:duration="300" />
+    <item android:drawable="@drawable/lying_down3" android:duration="300" />
+    <item android:drawable="@drawable/lying_down4" android:duration="300" />
+    <item android:drawable="@drawable/lying_down5" android:duration="2000" />
+    <item android:drawable="@drawable/lying_down6" android:duration="300" />
+    <item android:drawable="@drawable/lying_down7" android:duration="300" />
+    <item android:drawable="@drawable/lying_down8" android:duration="300" />
+    <item android:drawable="@drawable/lying_down9" android:duration="3000" />
+</animation-list>

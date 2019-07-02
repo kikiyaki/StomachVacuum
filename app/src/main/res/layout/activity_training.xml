@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TrainingActivity"
+    android:id="@+id/layout_training">
+
+    <TextView
+        android:id="@+id/training_prepare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/basic"
+        android:textSize="@dimen/h1"
+        android:text="@string/prepare"/>
+
+    <TextView
+        android:id="@+id/training_title"
+        android:layout_below="@id/training_prepare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/text"
+        android:textSize="@dimen/h2"/>
+
+    <ImageView
+        android:id="@+id/training_image"
+        android:layout_below="@id/training_title"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/prepare_time"
+        android:layout_below="@id/training_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/h1"
+        android:textColor="@color/basic"/>
+
+
+    <View
+        android:id="@+id/training_progress_back"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/back_black"/>
+
+    <View
+        android:id="@+id/training_progress_front"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/basic"/>
+
+    <TextView
+        android:id="@+id/training_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
+        android:textSize="@dimen/h2"
+        android:textColor="@color/white"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="10dp"
+        app:srcCompat="@drawable/help" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/training_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="60dp"
+        android:layout_marginStart="10dp"
+        app:srcCompat="@drawable/entry_back" />
+
+</RelativeLayout>

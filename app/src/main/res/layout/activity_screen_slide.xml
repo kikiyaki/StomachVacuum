@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
+    <ImageView
+        android:id="@+id/dot1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="20px"
+        android:paddingHorizontal="5dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/dot0"/>
+    <ImageView
+        android:id="@+id/dot0"
+        android:layout_toLeftOf="@id/dot1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="20px"
+        android:paddingHorizontal="5dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/dot1"/>
+    <ImageView
+        android:id="@+id/dot2"
+        android:layout_toRightOf="@id/dot1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="20px"
+        android:paddingHorizontal="5dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/dot0"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="35px"
+        app:srcCompat="@drawable/entry_next" />
+
+</RelativeLayout>
