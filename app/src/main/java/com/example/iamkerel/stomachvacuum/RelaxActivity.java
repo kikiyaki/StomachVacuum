@@ -62,7 +62,8 @@ public class RelaxActivity extends Activity {
         relaxSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goBack();
+                handler.removeCallbacksAndMessages(null);
+                startActivity(intentNext);
             }
         });
 
@@ -80,6 +81,7 @@ public class RelaxActivity extends Activity {
             progressBar.setProgress(100-(100*time)/totalTime);
 
             if (time < 1) {
+                handler.removeCallbacksAndMessages(null);
                 startActivity(intentNext);
             } else {
                 time--;
