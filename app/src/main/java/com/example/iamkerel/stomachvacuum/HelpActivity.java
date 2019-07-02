@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 public class HelpActivity extends Activity {
     private int pauseTime;
+    private int relaxTime;
     private int exercise;
     private int level;
     private int day;
@@ -33,6 +34,8 @@ public class HelpActivity extends Activity {
 
         Intent intent = getIntent();
         pauseTime = intent.getIntExtra("PAUSE_TIME", 0);
+        relaxTime = intent.getIntExtra("RELAX_TIME", 0);
+
         exercise = intent.getIntExtra("EXERCISE", 0);
         level = intent.getIntExtra("LEVEL", 0);
         day = intent.getIntExtra("DAY", 0);
@@ -65,6 +68,7 @@ public class HelpActivity extends Activity {
                 Intent intent = new Intent(HelpActivity.this, TrainingActivity.class);
                 intent.putExtra("AFTER_HELP", true);
                 intent.putExtra("PAUSE_TIME", pauseTime);
+                intent.putExtra("RELAX_TIME", relaxTime);
                 intent.putExtra("LEVEL", level);
                 intent.putExtra("DAY", day);
                 startActivity(intent);

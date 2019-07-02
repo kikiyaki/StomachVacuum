@@ -71,11 +71,23 @@ public class TrainingActivity extends Activity {
         afterRelax = intent.getBooleanExtra("AFTER_RELAX", false);
         afterHelp = intent.getBooleanExtra("AFTER_HELP", false);
 
+        Log.e("TTT", String.valueOf(afterRelax));
+        Log.e("TTT", String.valueOf(afterHelp));
+
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                handler.removeCallbacksAndMessages(null);
+
                 Intent intent = new Intent(TrainingActivity.this, HelpActivity.class);
+
+                Log.e("TTT", String.valueOf(time));
+
                 intent.putExtra("PAUSE_TIME", time);
+                // relaxTime отсылаем чтобы при возвращении на TrainingActivity
+                // если relaxTime > 0 продолжить подготовку к тренировке, либо
+                // если relaxTime < 0 запустить таймер самой тренировки
+                intent.putExtra("RELAX_TIME", relaxTime);
                 intent.putExtra("EXERCISE", exercise);
                 intent.putExtra("LEVEL", level);
                 intent.putExtra("DAY", day);
@@ -106,19 +118,35 @@ public class TrainingActivity extends Activity {
             totalTime = time;
             exerciseId = cursor.getInt(2);
 
-            // If after help or pause restore time
             if (afterHelp) {
+                // Если после HelpActivity
                 time = intent.getIntExtra("PAUSE_TIME", time);
+
+                relaxTime = intent.getIntExtra("RELAX_TIME", 0);
+
+                if (relaxTime > 0) {
+                    // Если relaxTime еще осталось, то возобновляем таймер подготовки
+                    setPrepareGraphics();
+                    handler.postDelayed(timeUpdaterPrepare, 100);
+                } else {
+                    // Если relaxTime не осталось, возобновляем саму тренировку
+                    setTrainingGraphics();
+                    handler.postDelayed(timeUpdaterRunnable, 100);
+                }
+
+            } else {
+                if (!afterRelax) {
+                    // Если первая тренировка, то запускаем таймер для подготовки
+                    setPrepareGraphics();
+                    handler.postDelayed(timeUpdaterPrepare, 100);
+                } else {
+                    // Если после отдыха, то сразу запускаем тренировку
+                    setTrainingGraphics();
+                    handler.postDelayed(timeUpdaterRunnable, 100);
+                }
             }
 
-            // Start timer
-            if (!afterRelax) {
-                setPrepareGraphics();
-                handler.postDelayed(timeUpdaterPrepare, 100);
-            } else {
-                setTrainingGraphics();
-                handler.postDelayed(timeUpdaterRunnable, 100);
-            }
+
         } else {
             ////////test/////////
             Log.e("QQQ", "cursor < 0");
