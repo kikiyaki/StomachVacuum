@@ -1,6 +1,8 @@
 package com.example.iamkerel.stomachvacuum;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.Image;
@@ -65,14 +67,26 @@ public class HelpActivity extends Activity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HelpActivity.this, TrainingActivity.class);
-                intent.putExtra("AFTER_HELP", true);
-                intent.putExtra("PAUSE_TIME", pauseTime);
-                intent.putExtra("RELAX_TIME", relaxTime);
-                intent.putExtra("LEVEL", level);
-                intent.putExtra("DAY", day);
-                startActivity(intent);
+                goBack();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        goBack();
+    }
+
+    /**
+     * Метод для кнопки назад или кнопки выхода на макете
+     */
+    public void goBack() {
+        Intent intent = new Intent(HelpActivity.this, TrainingActivity.class);
+        intent.putExtra("AFTER_HELP", true);
+        intent.putExtra("PAUSE_TIME", pauseTime);
+        intent.putExtra("RELAX_TIME", relaxTime);
+        intent.putExtra("LEVEL", level);
+        intent.putExtra("DAY", day);
+        startActivity(intent);
     }
 }
