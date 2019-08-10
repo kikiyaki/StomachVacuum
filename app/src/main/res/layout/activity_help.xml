@@ -18,15 +18,34 @@
         android:id="@+id/help_image"
         android:layout_below="@id/help_title"
         android:layout_width="300dp"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"/>
 
-    <TextView
-        android:id="@+id/help_text"
+    <ScrollView
         android:layout_below="@id/help_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/h4"
-        android:textColor="@color/text"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="120px">
+
+            <TextView
+                android:id="@+id/help_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="10dp"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/h3"
+                android:textColor="@color/text"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/help_back"
@@ -34,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
         app:srcCompat="@drawable/entry_back" />
 
