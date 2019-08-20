@@ -29,53 +29,6 @@ public class DB extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE DATA ("
-                + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                +"level INTEGER, "
-                +"day INTEGER, "
-                +"num INTEGER, "
-                +"time INTEGER, "
-                +"exercise INTEGER, "
-                +"done INTEGER);");
-
-
-        /////////test data table/////////////////
-        for (int lvl = 0; lvl < 3; lvl++) {
-            for (int day = 0; day < 14; day++){
-                for (int num = 0; num < 4; num++) {
-                    ContentValues values = new ContentValues();
-                    values.put("level", lvl);
-                    values.put("day", day);
-                    values.put("num", num);
-                    if (num < 2) {
-                        values.put("time", 10);
-                    } else {
-                        values.put("time", 15);
-                    }
-                    if (num == 0) {
-                        values.put("exercise", 0);
-                    } else {
-                        if (num == 1) {
-                            values.put("exercise", 1);
-                        } else {
-                            values.put("exercise", 2);
-                        }
-                    }
-                    if (day == 0 && num == 2 || day == 13) {
-                        values.put("done", 1);
-                    } else {
-                        values.put("done", 0);
-                    }
-
-                    db.insert("DATA", null, values);
-                }
-            }
-        }
-
-    }
-
-    @Override
     public void onUpgrade(SQLiteDatabase db, int OldVersion, int NewVersion) {
     }
 
@@ -178,6 +131,266 @@ public class DB extends SQLiteOpenHelper {
         }
     }
 
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE DATA ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                +"level INTEGER, "      // уровень
+                +"day INTEGER, "        // день внутри уровня
+                +"num INTEGER, "        //
+                +"time INTEGER, "
+                +"exercise INTEGER, "
+                +"done INTEGER);");
 
+
+        /////////test data table/////////////////
+
+        ContentValues values = new ContentValues();
+
+        values.put("level", 0);values.put("day", 0);values.put("num", 0);values.put("time", 10);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 0);values.put("num", 1);values.put("time", 10);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 0);values.put("num", 2);values.put("time", 10);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 0);values.put("num", 3);values.put("time", 10);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 1);values.put("num", 0);values.put("time", 10);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 1);values.put("num", 1);values.put("time", 10);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 1);values.put("num", 2);values.put("time", 10);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 1);values.put("num", 3);values.put("time", 10);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 2);values.put("num", 0);values.put("time", 12);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 2);values.put("num", 1);values.put("time", 12);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 2);values.put("num", 2);values.put("time", 12);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 2);values.put("num", 3);values.put("time", 12);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 3);values.put("num", 0);values.put("time", 14);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 3);values.put("num", 1);values.put("time", 14);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 3);values.put("num", 2);values.put("time", 14);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 3);values.put("num", 3);values.put("time", 14);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 4);values.put("num", 0);values.put("time", 14);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 4);values.put("num", 1);values.put("time", 14);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 4);values.put("num", 2);values.put("time", 14);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 4);values.put("num", 3);values.put("time", 14);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 5);values.put("num", 0);values.put("time", 15);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 5);values.put("num", 1);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 5);values.put("num", 2);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 5);values.put("num", 3);values.put("time", 15);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 6);values.put("num", 0);values.put("time", 15);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 6);values.put("num", 1);values.put("time", 15);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 6);values.put("num", 2);values.put("time", 15);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 6);values.put("num", 3);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 6);values.put("num", 4);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 7);values.put("num", 0);values.put("time", 16);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 7);values.put("num", 1);values.put("time", 16);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 7);values.put("num", 2);values.put("time", 16);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 7);values.put("num", 3);values.put("time", 16);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 7);values.put("num", 4);values.put("time", 16);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 8);values.put("num", 0);values.put("time", 16);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 8);values.put("num", 1);values.put("time", 16);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 8);values.put("num", 2);values.put("time", 16);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 8);values.put("num", 3);values.put("time", 16);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 8);values.put("num", 4);values.put("time", 16);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 9);values.put("num", 0);values.put("time", 18);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 9);values.put("num", 1);values.put("time", 18);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 9);values.put("num", 2);values.put("time", 18);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 9);values.put("num", 3);values.put("time", 18);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 9);values.put("num", 4);values.put("time", 18);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 10);values.put("num", 0);values.put("time", 18);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 10);values.put("num", 1);values.put("time", 18);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 10);values.put("num", 2);values.put("time", 18);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 10);values.put("num", 3);values.put("time", 18);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 10);values.put("num", 4);values.put("time", 18);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 11);values.put("num", 0);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 11);values.put("num", 1);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 11);values.put("num", 2);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 11);values.put("num", 3);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 11);values.put("num", 4);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 12);values.put("num", 0);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 12);values.put("num", 1);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 12);values.put("num", 2);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 12);values.put("num", 3);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 12);values.put("num", 4);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 13);values.put("num", 0);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 13);values.put("num", 1);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 13);values.put("num", 2);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 13);values.put("num", 3);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 0);values.put("day", 13);values.put("num", 4);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 0);values.put("num", 0);values.put("time", 15);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 0);values.put("num", 1);values.put("time", 15);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 0);values.put("num", 2);values.put("time", 15);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 0);values.put("num", 3);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 0);values.put("num", 4);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 1);values.put("num", 0);values.put("time", 15);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 1);values.put("num", 1);values.put("time", 15);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 1);values.put("num", 2);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 1);values.put("num", 3);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 1);values.put("num", 4);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 2);values.put("num", 0);values.put("time", 15);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 2);values.put("num", 1);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 2);values.put("num", 2);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 2);values.put("num", 3);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 2);values.put("num", 4);values.put("time", 15);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 3);values.put("num", 0);values.put("time", 18);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 3);values.put("num", 1);values.put("time", 18);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 3);values.put("num", 2);values.put("time", 18);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 3);values.put("num", 3);values.put("time", 18);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 3);values.put("num", 4);values.put("time", 18);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 4);values.put("num", 0);values.put("time", 18);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 4);values.put("num", 1);values.put("time", 18);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 4);values.put("num", 2);values.put("time", 18);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 4);values.put("num", 3);values.put("time", 18);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 4);values.put("num", 4);values.put("time", 18);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 5);values.put("num", 0);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 5);values.put("num", 1);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 5);values.put("num", 2);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 5);values.put("num", 3);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 5);values.put("num", 4);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 6);values.put("num", 0);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 6);values.put("num", 1);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 6);values.put("num", 2);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 6);values.put("num", 3);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 6);values.put("num", 4);values.put("time", 20);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 7);values.put("num", 0);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 7);values.put("num", 1);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 7);values.put("num", 2);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 7);values.put("num", 3);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 7);values.put("num", 4);values.put("time", 20);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 7);values.put("num", 5);values.put("time", 20);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 8);values.put("num", 0);values.put("time", 22);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 8);values.put("num", 1);values.put("time", 22);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 8);values.put("num", 2);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 8);values.put("num", 3);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 8);values.put("num", 4);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 8);values.put("num", 5);values.put("time", 22);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 9);values.put("num", 0);values.put("time", 25);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 9);values.put("num", 1);values.put("time", 25);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 9);values.put("num", 2);values.put("time", 25);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 9);values.put("num", 3);values.put("time", 25);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 9);values.put("num", 4);values.put("time", 25);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 9);values.put("num", 5);values.put("time", 25);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 10);values.put("num", 0);values.put("time", 25);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 10);values.put("num", 1);values.put("time", 25);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 10);values.put("num", 2);values.put("time", 25);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 10);values.put("num", 3);values.put("time", 25);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 10);values.put("num", 4);values.put("time", 25);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 10);values.put("num", 5);values.put("time", 25);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 11);values.put("num", 0);values.put("time", 27);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 11);values.put("num", 1);values.put("time", 27);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 11);values.put("num", 2);values.put("time", 27);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 11);values.put("num", 3);values.put("time", 27);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 11);values.put("num", 4);values.put("time", 27);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 11);values.put("num", 5);values.put("time", 27);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 12);values.put("num", 0);values.put("time", 28);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 12);values.put("num", 1);values.put("time", 28);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 12);values.put("num", 2);values.put("time", 28);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 12);values.put("num", 3);values.put("time", 28);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 12);values.put("num", 4);values.put("time", 28);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 12);values.put("num", 5);values.put("time", 28);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 13);values.put("num", 0);values.put("time", 28);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 13);values.put("num", 1);values.put("time", 28);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 13);values.put("num", 2);values.put("time", 28);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 13);values.put("num", 3);values.put("time", 28);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 13);values.put("num", 4);values.put("time", 28);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 1);values.put("day", 13);values.put("num", 5);values.put("time", 28);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 0);values.put("num", 0);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 0);values.put("num", 1);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 0);values.put("num", 2);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 0);values.put("num", 3);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 0);values.put("num", 4);values.put("time", 20);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 0);values.put("num", 5);values.put("time", 20);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 1);values.put("num", 0);values.put("time", 20);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 1);values.put("num", 1);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 1);values.put("num", 2);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 1);values.put("num", 3);values.put("time", 20);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 1);values.put("num", 4);values.put("time", 20);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 1);values.put("num", 5);values.put("time", 20);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 2);values.put("num", 0);values.put("time", 22);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 2);values.put("num", 1);values.put("time", 22);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 2);values.put("num", 2);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 2);values.put("num", 3);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 2);values.put("num", 4);values.put("time", 22);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 2);values.put("num", 5);values.put("time", 22);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 3);values.put("num", 0);values.put("time", 22);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 3);values.put("num", 1);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 3);values.put("num", 2);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 3);values.put("num", 3);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 3);values.put("num", 4);values.put("time", 22);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 3);values.put("num", 5);values.put("time", 22);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 4);values.put("num", 0);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 4);values.put("num", 1);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 4);values.put("num", 2);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 4);values.put("num", 3);values.put("time", 22);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 4);values.put("num", 4);values.put("time", 22);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 4);values.put("num", 5);values.put("time", 22);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 5);values.put("num", 0);values.put("time", 25);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 5);values.put("num", 1);values.put("time", 25);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 5);values.put("num", 2);values.put("time", 25);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 5);values.put("num", 3);values.put("time", 25);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 5);values.put("num", 4);values.put("time", 25);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 5);values.put("num", 5);values.put("time", 25);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 6);values.put("num", 0);values.put("time", 25);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 6);values.put("num", 1);values.put("time", 25);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 6);values.put("num", 2);values.put("time", 25);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 6);values.put("num", 3);values.put("time", 25);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 6);values.put("num", 4);values.put("time", 25);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 6);values.put("num", 5);values.put("time", 25);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 6);values.put("num", 6);values.put("time", 25);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 7);values.put("num", 0);values.put("time", 27);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 7);values.put("num", 1);values.put("time", 27);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 7);values.put("num", 2);values.put("time", 27);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 7);values.put("num", 3);values.put("time", 27);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 7);values.put("num", 4);values.put("time", 27);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 7);values.put("num", 5);values.put("time", 27);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 7);values.put("num", 6);values.put("time", 27);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 8);values.put("num", 0);values.put("time", 27);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 8);values.put("num", 1);values.put("time", 27);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 8);values.put("num", 2);values.put("time", 27);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 8);values.put("num", 3);values.put("time", 27);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 8);values.put("num", 4);values.put("time", 27);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 8);values.put("num", 5);values.put("time", 27);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 8);values.put("num", 6);values.put("time", 27);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 9);values.put("num", 0);values.put("time", 28);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 9);values.put("num", 1);values.put("time", 28);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 9);values.put("num", 2);values.put("time", 28);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 9);values.put("num", 3);values.put("time", 28);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 9);values.put("num", 4);values.put("time", 28);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 9);values.put("num", 5);values.put("time", 28);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 9);values.put("num", 6);values.put("time", 28);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 9);values.put("num", 7);values.put("time", 28);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 10);values.put("num", 0);values.put("time", 30);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 10);values.put("num", 1);values.put("time", 30);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 10);values.put("num", 2);values.put("time", 30);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 10);values.put("num", 3);values.put("time", 30);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 10);values.put("num", 4);values.put("time", 30);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 10);values.put("num", 5);values.put("time", 30);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 10);values.put("num", 6);values.put("time", 30);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 10);values.put("num", 7);values.put("time", 30);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 10);values.put("num", 8);values.put("time", 30);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 11);values.put("num", 0);values.put("time", 32);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 11);values.put("num", 1);values.put("time", 32);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 11);values.put("num", 2);values.put("time", 32);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 11);values.put("num", 3);values.put("time", 32);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 11);values.put("num", 4);values.put("time", 32);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 11);values.put("num", 5);values.put("time", 32);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 11);values.put("num", 6);values.put("time", 32);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 11);values.put("num", 7);values.put("time", 32);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 11);values.put("num", 8);values.put("time", 32);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 12);values.put("num", 0);values.put("time", 35);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 12);values.put("num", 1);values.put("time", 35);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 12);values.put("num", 2);values.put("time", 35);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 12);values.put("num", 3);values.put("time", 35);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 12);values.put("num", 4);values.put("time", 35);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 12);values.put("num", 5);values.put("time", 35);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 12);values.put("num", 6);values.put("time", 35);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 12);values.put("num", 7);values.put("time", 35);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 12);values.put("num", 8);values.put("time", 35);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 13);values.put("num", 0);values.put("time", 35);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 13);values.put("num", 1);values.put("time", 35);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 13);values.put("num", 2);values.put("time", 35);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 13);values.put("num", 3);values.put("time", 35);values.put("exercise", 1);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 13);values.put("num", 4);values.put("time", 35);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 13);values.put("num", 5);values.put("time", 35);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 13);values.put("num", 6);values.put("time", 35);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 13);values.put("num", 7);values.put("time", 35);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+        values.put("level", 2);values.put("day", 13);values.put("num", 8);values.put("time", 35);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
+
+
+    }
 
 }
