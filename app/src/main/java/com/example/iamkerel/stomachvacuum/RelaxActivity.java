@@ -20,8 +20,8 @@ public class RelaxActivity extends Activity {
 
     Cursor cursor;
     Handler handler = new Handler();
-    int time = 10;
-    int totalTime = 10;
+    int time = 30;
+    int totalTime = 30;
 
     ProgressBar progressBar;
     TextView relaxTime;
