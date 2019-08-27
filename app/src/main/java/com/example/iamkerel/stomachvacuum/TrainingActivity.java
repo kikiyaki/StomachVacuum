@@ -108,11 +108,6 @@ public class TrainingActivity extends Activity {
 
         if (cursor.getCount() > 0) {
 
-            ////////test/////////
-            Log.e("QQQ", "cursor > 0");
-            Log.e("QQQ", String.valueOf(level)+"-"+String.valueOf(day));
-            ///////////////
-
             exercise = cursor.getInt(0);
             time = cursor.getInt(1);
             totalTime = time;
@@ -141,6 +136,7 @@ public class TrainingActivity extends Activity {
                     handler.postDelayed(timeUpdaterPrepare, 100);
                 } else {
                     // Если после отдыха, то сразу запускаем тренировку
+                    relaxTime = 0;
                     setTrainingGraphics();
                     handler.postDelayed(timeUpdaterRunnable, 100);
                 }
@@ -148,10 +144,6 @@ public class TrainingActivity extends Activity {
 
 
         } else {
-            ////////test/////////
-            Log.e("QQQ", "cursor < 0");
-            Log.e("QQQ", String.valueOf(level)+"-"+String.valueOf(day));
-            ///////////////
 
             Intent intent1 = new Intent(this, EndDayActivity.class);
             intent.putExtra("LEVEL", level);
@@ -173,10 +165,6 @@ public class TrainingActivity extends Activity {
                 // If it was last exercise for this day
                 cursor = db.getNotDoneExercise(level, day);
                 if (cursor.getCount() < 1) {
-
-                    ////////test/////////
-                    Log.e("QQQ", "(2) cursor < 0");
-                    ///////////////
 
                     Intent intent = new Intent(TrainingActivity.this, EndDayActivity.class);
                     intent.putExtra("LEVEL", level);
@@ -259,6 +247,32 @@ public class TrainingActivity extends Activity {
 
         trainingAnimation = (AnimationDrawable) trainingImage.getBackground();
         trainingAnimation.start();
+    }
+
+    // Удаляем поток перед скрытием приложки
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Log.e("QQQ", "onPause");
+        handler.removeCallbacksAndMessages(null);
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        if (relaxTime > 0) {
+            Log.e("QQQ", "prepare");
+            setPrepareGraphics();
+            handler.postDelayed(timeUpdaterPrepare, 100);
+        } else {
+            Log.e("QQQ", "run");
+            setTrainingGraphics();
+            handler.postDelayed(timeUpdaterRunnable, 100);
+        }
+
     }
 
     @Override

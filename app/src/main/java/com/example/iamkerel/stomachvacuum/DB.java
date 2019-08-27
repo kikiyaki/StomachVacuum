@@ -142,9 +142,7 @@ public class DB extends SQLiteOpenHelper {
                 +"exercise INTEGER, "
                 +"done INTEGER);");
 
-
-        /////////test data table/////////////////
-
+        // Создаем базу данных
         ContentValues values = new ContentValues();
 
         values.put("level", 0);values.put("day", 0);values.put("num", 0);values.put("time", 10);values.put("exercise", 0);values.put("done", 0);db.insert("DATA", null, values);
