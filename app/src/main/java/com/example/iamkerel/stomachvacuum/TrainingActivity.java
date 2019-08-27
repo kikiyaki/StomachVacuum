@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -17,6 +19,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 public class TrainingActivity extends Activity {
     private boolean afterRelax;
@@ -47,12 +51,19 @@ public class TrainingActivity extends Activity {
     private int totalTime;
     private int time;
 
+    private SoundPool sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+    private int soundStartId;
+    private int soundEndId;
+    private int soundCongratId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
         Log.e("QQQ", "Start Training");
+
+        loadSounds();
 
         trainingPrepare = (TextView) findViewById(R.id.training_prepare);
         trainingTitle = (TextView) findViewById(R.id.training_title);
@@ -126,6 +137,7 @@ public class TrainingActivity extends Activity {
                 } else {
                     // Если relaxTime не осталось, возобновляем саму тренировку
                     setTrainingGraphics();
+                    playStart();
                     handler.postDelayed(timeUpdaterRunnable, 100);
                 }
 
@@ -138,6 +150,7 @@ public class TrainingActivity extends Activity {
                     // Если после отдыха, то сразу запускаем тренировку
                     relaxTime = 0;
                     setTrainingGraphics();
+                    playStart();
                     handler.postDelayed(timeUpdaterRunnable, 100);
                 }
             }
@@ -165,11 +178,12 @@ public class TrainingActivity extends Activity {
                 // If it was last exercise for this day
                 cursor = db.getNotDoneExercise(level, day);
                 if (cursor.getCount() < 1) {
-
+                    playCongrat();
                     Intent intent = new Intent(TrainingActivity.this, EndDayActivity.class);
                     intent.putExtra("LEVEL", level);
                     startActivity(intent);
                 } else {
+                    playEnd();
                     Intent intent = new Intent(TrainingActivity.this, RelaxActivity.class);
                     intent.putExtra("LEVEL", level);
                     intent.putExtra("DAY", day);
@@ -196,6 +210,7 @@ public class TrainingActivity extends Activity {
             if (relaxTime < 1) {
                 prepareTime.setVisibility(View.INVISIBLE);
                 setTrainingGraphics();
+                playStart();
                 handler.postDelayed(timeUpdaterRunnable, 500);
             } else {
                 prepareTime.setText(String.valueOf(relaxTime));
@@ -270,6 +285,7 @@ public class TrainingActivity extends Activity {
         } else {
             Log.e("QQQ", "run");
             setTrainingGraphics();
+            playStart();
             handler.postDelayed(timeUpdaterRunnable, 100);
         }
 
@@ -312,6 +328,35 @@ public class TrainingActivity extends Activity {
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    public void loadSounds(){
+        try {
+            soundStartId = sp.load(getAssets().openFd("start.ogg"), 1);
+            soundEndId = sp.load(getAssets().openFd("end.ogg"), 1);
+            soundCongratId = sp.load(getAssets().openFd("congrat.ogg"), 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("AAA", "Load sound error");
+        }
+    }
+
+    public void playStart() {
+        Log.e("QQQ", "play start<<");
+        sp.play(soundStartId, 1,1,1,0,1);
+        Log.e("QQQ", ">>play start");
+    }
+
+    public void playEnd() {
+        Log.e("QQQ", "play end<<");
+        sp.play(soundEndId, 1,1,1,0,1);
+        Log.e("QQQ", ">>play end");
+    }
+
+    public void playCongrat() {
+        Log.e("QQQ", "play congrat<<");
+        sp.play(soundCongratId, 1,1,1,0,1);
+        Log.e("QQQ", ">>play congrat");
     }
 
 }
