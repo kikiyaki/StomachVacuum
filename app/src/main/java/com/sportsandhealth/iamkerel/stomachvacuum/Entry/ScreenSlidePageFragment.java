@@ -1,15 +1,14 @@
 package com.sportsandhealth.iamkerel.stomachvacuum.Entry;
 
 import android.os.Bundle;
-import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.design.widget.TabLayout;
 import android.widget.TextView;
 
 import com.sportsandhealth.iamkerel.stomachvacuum.R;
+
+import androidx.fragment.app.Fragment;
 
 public class ScreenSlidePageFragment extends Fragment {
 

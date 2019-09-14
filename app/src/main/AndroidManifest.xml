@@ -25,6 +25,11 @@
         <activity android:name=".RelaxActivity" />
         <activity android:name=".EndDayActivity" />
         <activity android:name=".HelpActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-8275330758485766~2616787844"/>
+
     </application>
 
 </manifest>

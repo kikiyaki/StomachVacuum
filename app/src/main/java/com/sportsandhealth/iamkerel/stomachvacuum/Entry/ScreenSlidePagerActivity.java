@@ -2,22 +2,23 @@ package com.sportsandhealth.iamkerel.stomachvacuum.Entry;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sportsandhealth.iamkerel.stomachvacuum.AndroidDatabaseManager;
 import com.sportsandhealth.iamkerel.stomachvacuum.MainActivity;
 import com.sportsandhealth.iamkerel.stomachvacuum.ProgramSelection;
 import com.sportsandhealth.iamkerel.stomachvacuum.R;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 
 public class ScreenSlidePagerActivity extends FragmentActivity {
