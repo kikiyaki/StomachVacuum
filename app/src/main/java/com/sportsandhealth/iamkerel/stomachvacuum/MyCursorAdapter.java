@@ -94,16 +94,6 @@ public class MyCursorAdapter extends RecyclerView.Adapter<MyCursorAdapter.MyView
             holder.imageDone.setImageResource(R.drawable.done0);
         }
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, TrainingActivity.class);
-                intent.putExtra("LEVEL", DayActivity.level);
-                intent.putExtra("DAY", DayActivity.day);
-                context.startActivity(intent);
-            }
-        });
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)
