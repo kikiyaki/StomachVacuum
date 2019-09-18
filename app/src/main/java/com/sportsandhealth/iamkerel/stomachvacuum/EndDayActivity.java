@@ -35,7 +35,7 @@ public class EndDayActivity extends Activity {
         });
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-8275330758485766/2616787844");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         // Показывает просто после загрузки
