@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,12 +25,11 @@
         <activity android:name=".TrainingActivity" />
         <activity android:name=".RelaxActivity" />
         <activity android:name=".EndDayActivity" />
-        <activity android:name=".HelpActivity"></activity>
+        <activity android:name=".HelpActivity" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-8275330758485766~2662209244"/>
-
+            android:value="ca-app-pub-8275330758485766~2662209244" />
     </application>
 
 </manifest>
