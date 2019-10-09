@@ -34,7 +34,7 @@
 
     <string name="th_day">-й День</string>
 
-    <!-- Settings activity -->
+    <!-- Settings -->
 
     <string name="settings">Настройки</string>
     <string name="notifications">Напоминания</string>
@@ -43,6 +43,10 @@
     <string name="switch_off">Выключено</string>
     <string name="activated">Активировано</string>
     <string name="not_activated">Не активировано</string>
+
+    <string name="every_day">Каждый день</string>
+    <string name="enable">Включить</string>
+    <string name="disable">Выключить</string>
 
     <!-- Day activity -->
 
