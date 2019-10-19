@@ -7,15 +7,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.sportsandhealth.iamkerel.stomachvacuum.ProgramSelection;
 import com.sportsandhealth.iamkerel.stomachvacuum.R;
-
-import java.util.Date;
 
 /**
  * Уведомление
@@ -35,6 +32,7 @@ public class MyNotification {
     public MyNotification(Context context) {
         this.context = context;
     }
+
 
     /**
      * Регистрирует канал уведомлений. Необходимо для Android 8.0 и выше
@@ -56,13 +54,11 @@ public class MyNotification {
 
 
     /**
-     * Назначить новое уведомление
-     *
-     * @param date
+     * Показать уведомление
      */
-    public void create(Date date) {
+    public void make() {
 
-        Log.e("QQQ", "Create notification");
+        createNotificationChannel();
 
         // Create an explicit intent for an Activity in your app
         Intent intent = new Intent(this.context, ProgramSelection.class);
@@ -83,14 +79,6 @@ public class MyNotification {
 
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(notificationId, builder.build());
-    }
-
-
-    /**
-     * Удаляет все созданные уведомления
-     */
-    private void delete(){
-
     }
 
 }
