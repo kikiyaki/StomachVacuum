@@ -45,8 +45,10 @@
     <string name="not_activated">Не активировано</string>
 
     <string name="every_day">Каждый день</string>
-    <string name="enable">Включить</string>
-    <string name="disable">Выключить</string>
+    <string name="on">Вкл</string>
+    <string name="off">Выкл</string>
+    <string name="save">Сохр</string>
+    <string name="notification_was_created">Создано напоминание каждый день в</string>
 
     <string name="notification">Напоминание</string>
     <string name="time_to_training">Время тренировки!</string>
