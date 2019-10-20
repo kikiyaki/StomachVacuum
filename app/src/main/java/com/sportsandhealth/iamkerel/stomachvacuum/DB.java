@@ -131,8 +131,59 @@ public class DB extends SQLiteOpenHelper {
         }
     }
 
+
+    /**
+     * Проверяет постевлено ли напоминание
+     *
+     * @return isSet
+     */
+    public boolean isSetNotification() {
+        Cursor cursor = writableDB.rawQuery("SELECT * FROM NOTIFICATION", null);
+
+        boolean isSet;
+
+        Log.e("QQQee", String.valueOf(cursor.getCount()));
+
+        if (cursor.getCount() == 1) {
+            isSet = true;
+        } else {
+            isSet = false;
+        }
+
+        return isSet;
+    }
+
+
+    /**
+     * Делает запись в БД об уведомлении
+     *
+     * @param hour
+     * @param minute
+     */
+    public void setNotification(int hour, int minute) {
+        ContentValues values = new ContentValues();
+        values.put("hour", hour);
+        values.put("minute", minute);
+        writableDB.insert("NOTIFICATION", null, values);
+    }
+
+
+    /**
+     * Удаляет запись в БД об уведомлении
+     */
+    public void deleteNotification() {
+        writableDB.execSQL("DELETE FROM NOTIFICATION");
+    }
+
+
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("CREATE TABLE NOTIFICATION ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                +"hour INTEGER, "
+                +"minute INTEGER);");
+
         db.execSQL("CREATE TABLE DATA ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 +"level INTEGER, "      // уровень

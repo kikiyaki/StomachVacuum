@@ -49,6 +49,7 @@
     <string name="off">Выкл</string>
     <string name="save">Сохр</string>
     <string name="notification_was_created">Создано напоминание каждый день в</string>
+    <string name="notification_was_deleted">Напоминание было удалено</string>
 
     <string name="notification">Напоминание</string>
     <string name="time_to_training">Время тренировки!</string>

@@ -1,6 +1,7 @@
 package com.sportsandhealth.iamkerel.stomachvacuum;
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -39,6 +40,13 @@ public class NotificationActivity extends Activity {
         onButton = (Button) findViewById(R.id.onNotification);
         offButton = (Button) findViewById(R.id.offNotification);
 
+        // Если уведомление уже установлено, ставим текст кнопки ВКЛ/СОХР на СОХР
+        if (NotificationHelper.isSet(this)) {
+            onButton.setText(getString(R.string.save));
+        } else {
+            onButton.setText(getString(R.string.on));
+        }
+
         timePicker = (TimePicker) findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
 
@@ -57,6 +65,8 @@ public class NotificationActivity extends Activity {
      */
     public void onNotificationClick(View view) {
 
+        onButton.setText(getString(R.string.save));
+
         // Получаем время с таймпикера
         int hour = timePicker.getCurrentHour();
         int minute = timePicker.getCurrentMinute();
@@ -71,7 +81,8 @@ public class NotificationActivity extends Activity {
 
         String dateString = DateFormat.getTimeInstance(DateFormat.SHORT).format(date);
         String toastText = getString(R.string.notification_was_created) + " " + dateString;
-        Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, toastText, Toast.LENGTH_LONG)
+                .show();
     }
 
 
@@ -82,9 +93,12 @@ public class NotificationActivity extends Activity {
 
         // Во-первых при выключении меняем кнопку ВКЛ/СОХР на ВКЛ
         onButton.setText(R.string.on);
+        NotificationHelper.deleteNotification(this);
 
-
+        Toast.makeText(this, getString(R.string.notification_was_deleted), Toast.LENGTH_LONG)
+                .show();
     }
+
 
     @Override
     public void onBackPressed() {
