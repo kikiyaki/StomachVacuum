@@ -3,14 +3,10 @@ package com.sportsandhealth.iamkerel.stomachvacuum;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TimePicker;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.sportsandhealth.iamkerel.stomachvacuum.lib.MyNotification;
-
-import java.util.Date;
 
 public class NotificationActivity extends Activity {
 
@@ -34,9 +30,7 @@ public class NotificationActivity extends Activity {
     }
 
     public void notificationButtonOnClick(View view) {
-        Log.e("QQQ", "click");
-        MyNotification myNotification = new MyNotification(this);
-        myNotification.create(new Date());
+
     }
 
     @Override
