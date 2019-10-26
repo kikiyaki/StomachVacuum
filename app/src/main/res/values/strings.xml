@@ -34,16 +34,6 @@
 
     <string name="th_day">-й День</string>
 
-    <!-- Settings activity -->
-
-    <string name="settings">Настройки</string>
-    <string name="notifications">Напоминания</string>
-    <string name="ad_free_version">Версия без рекламы</string>
-    <string name="switch_on">Включено</string>
-    <string name="switch_off">Выключено</string>
-    <string name="activated">Активировано</string>
-    <string name="not_activated">Не активировано</string>
-
     <!-- Day activity -->
 
     <string name="stand_up">Вакуум стоя</string>

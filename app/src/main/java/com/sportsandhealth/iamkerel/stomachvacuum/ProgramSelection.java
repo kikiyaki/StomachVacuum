@@ -23,13 +23,14 @@ public class ProgramSelection extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.e("ddddd", "sdfsdfsdfsdfc");
+
         setContentView(R.layout.activity_program_selection);
 
         CardView card0 = (CardView) findViewById(R.id.level_card_0);
         CardView card1 = (CardView) findViewById(R.id.level_card_1);
         CardView card2 = (CardView) findViewById(R.id.level_card_2);
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.exit_btn);
-        FloatingActionButton settingsButton = (FloatingActionButton) findViewById(R.id.settings_btn);
 
         card0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,14 +63,6 @@ public class ProgramSelection extends Activity {
             @Override
             public void onClick(View view) {
                 goBack();
-            }
-        });
-
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProgramSelection.this, SettingsActivity.class);
-                startActivity(intent);
             }
         });
 
