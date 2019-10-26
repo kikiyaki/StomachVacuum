@@ -31,13 +31,6 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8275330758485766~2662209244" />
-
-        <receiver
-            android:name=".lib.NotificationBroadcastReceiver"
-            android:enabled="true"
-            android:exported="false" >
-        </receiver>
-
     </application>
 
 </manifest>
