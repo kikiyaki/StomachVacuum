@@ -46,7 +46,7 @@ public class NotificationHelper {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE );
         assert alarmManager != null;
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, date.getTime(),
-                1000*60, pendingIntent);
+                1000*60*60*24, pendingIntent);
         // Запись в БД
         setNotificationDatabase(context, date);
     }
