@@ -24,13 +24,32 @@ public class MyNotification {
      */
     private Context context;
 
-    private String channelId;
-    private int notificationId;
+    private String channelId = "MY_CHANNEL_ID";
+    private CharSequence name = "StomachVacuumChannel";
+    private String description = "StomachVacuumChannel";
+    private int notificationId = 777;
 
-    public MyNotification(Context context, String channelId, int notificationId) {
+    public MyNotification(Context context) {
         this.context = context;
-        this.channelId = channelId;
-        this.notificationId = notificationId;
+    }
+
+
+    /**
+     * Регистрирует канал уведомлений. Необходимо для Android 8.0 и выше
+     * Выполнять при первом запуске приложения
+     */
+    public void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(channelId, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = this.context.getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 
@@ -38,6 +57,8 @@ public class MyNotification {
      * Показать уведомление
      */
     public void make() {
+
+        createNotificationChannel();
 
         // Create an explicit intent for an Activity in your app
         Intent intent = new Intent(this.context, ProgramSelection.class);
