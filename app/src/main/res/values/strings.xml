@@ -48,9 +48,6 @@
     <string name="enable">Включить</string>
     <string name="disable">Выключить</string>
 
-    <string name="notification">Напоминание</string>
-    <string name="time_to_training">Время тренировки!</string>
-
     <!-- Day activity -->
 
     <string name="stand_up">Вакуум стоя</string>
