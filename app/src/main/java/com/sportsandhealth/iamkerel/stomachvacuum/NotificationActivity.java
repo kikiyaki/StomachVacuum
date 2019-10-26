@@ -1,27 +1,25 @@
 package com.sportsandhealth.iamkerel.stomachvacuum;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sportsandhealth.iamkerel.stomachvacuum.lib.MyNotification;
+import com.sportsandhealth.iamkerel.stomachvacuum.lib.NotificationBroadcastReceiver;
 import com.sportsandhealth.iamkerel.stomachvacuum.lib.NotificationHelper;
 
-import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class NotificationActivity extends Activity {
 
     private TimePicker timePicker;
-
-    private Button onButton;
-    private Button offButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,53 +34,16 @@ public class NotificationActivity extends Activity {
             }
         });
 
-        onButton = (Button) findViewById(R.id.onNotification);
-        offButton = (Button) findViewById(R.id.offNotification);
-
         timePicker = (TimePicker) findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
-
-        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            @Override
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                // Меняем текст кнопки ВКЛ/СОХР на СОХР
-                onButton.setText(R.string.save);
-            }
-        });
     }
 
+    public void notificationButtonOnClick(View view) {
 
-    /**
-     * Обрабатываем кнопку ВКЛ/СОХР
-     */
-    public void onNotificationClick(View view) {
+        Date date = new Date();
+        date.setTime(date.getTime()+3000);
 
-        // Получаем время с таймпикера
-        int hour = timePicker.getCurrentHour();
-        int minute = timePicker.getCurrentMinute();
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, hour);
-        calendar.set(Calendar.MINUTE, minute);
-        Date date = calendar.getTime();
-
-        // Назначаем уведомление
         NotificationHelper.schedule(this, date);
-
-        String dateString = DateFormat.getTimeInstance(DateFormat.SHORT).format(date);
-        String toastText = getString(R.string.notification_was_created) + " " + dateString;
-        Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
-    }
-
-
-    /**
-     * Обрабатываем кнопку ВЫКЛ
-     */
-    public void offNotificationClick(View view) {
-
-        // Во-первых при выключении меняем кнопку ВКЛ/СОХР на ВКЛ
-        onButton.setText(R.string.on);
-
 
     }
 
@@ -90,7 +51,6 @@ public class NotificationActivity extends Activity {
     public void onBackPressed() {
         goBack();
     }
-
 
     /**
      * Метод для кнопки назад или кнопки выхода на макете
