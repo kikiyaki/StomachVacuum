@@ -113,6 +113,8 @@
 
     <!-- Ad Units -->
 
+    <string name="app_ad_id">ca-app-pub-8275330758485766~2662209244</string>
+
     <string name="end_day_interstitial_ad_unit_id">ca-app-pub-8275330758485766/2616787844</string>
     <string name="day_interstitial_ad_unit_id">ca-app-pub-8275330758485766/3698941787</string>
     <string name="relax_banner_ad_unit_id">ca-app-pub-8275330758485766/2394772432</string>
