@@ -8,6 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,8 +29,22 @@ public class DayActivity extends Activity {
     public static int level;
     public static int day;
 
+    private InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Как можно раньше начать загрузку рекламы
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.day_interstitial_ad_unit_id));
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+        });
+        // Включить показ рекламы после загрузки
+        enableAd();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day);
 
@@ -78,6 +98,10 @@ public class DayActivity extends Activity {
     }
 
     public void toTraining(View view) {
+        // Отключить показ рекламы после загрузки
+        // чтобы реклама с DayActivity не показывалась во время тренировки
+        disableAd();
+
         Intent intent = new Intent(this, TrainingActivity.class);
         intent.putExtra("LEVEL", DayActivity.level);
         intent.putExtra("DAY", DayActivity.day);
@@ -93,8 +117,38 @@ public class DayActivity extends Activity {
      * Метод для кнопки назад или кнопки выхода на макете
      */
     public void goBack() {
+        // Отключить показ рекламы после загрузки
+        // чтобы реклама с DayActivity не показывалась в другой активности
+        disableAd();
+
         Intent intent = new Intent(DayActivity.this, ProgramActivity.class);
         intent.putExtra("LEVEL", level);
         startActivity(intent);
+    }
+
+
+    /**
+     * Включает показ рекламы после загрузки
+     */
+    private void enableAd() {
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                mInterstitialAd.show();
+            }
+        });
+    }
+
+
+    /**
+     * Отключает показ рекламы после загрузки
+     */
+    private void disableAd() {
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+
+            }
+        });
     }
 }

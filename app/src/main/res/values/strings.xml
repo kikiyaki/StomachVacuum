@@ -111,4 +111,11 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
 
+    <!-- Ad Units -->
+
+    <!-- For Testing -->
+    <string name="end_day_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="day_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="relax_banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
 </resources>
