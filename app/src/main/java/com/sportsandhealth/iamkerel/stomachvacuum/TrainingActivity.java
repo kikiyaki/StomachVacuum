@@ -19,6 +19,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
@@ -57,6 +63,9 @@ public class TrainingActivity extends Activity {
     private int soundEndId;
     private int soundCongratId;
 
+    private InterstitialAd mInterstitialAd;
+    private boolean adLoadIsFailed = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +73,7 @@ public class TrainingActivity extends Activity {
 
         Log.e("QQQ", "Start Training");
 
+        loadAd();
         loadSounds();
 
         trainingPrepare = (TextView) findViewById(R.id.training_prepare);
@@ -311,13 +321,22 @@ public class TrainingActivity extends Activity {
                 .setPositiveButton(getResources().getString(R.string.yes),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                handler.removeCallbacksAndMessages(null);
 
-                                Intent intent = new Intent(TrainingActivity.this, DayActivity.class);
-                                intent.putExtra("LEVEL", level);
-                                intent.putExtra("DAY", day);
+                                if (adLoadIsFailed) {
+                                    goToDay();
+                                }
 
-                                startActivity(intent);
+                                // Показываем рекламу и переходим в DayActivity по закритии рекламы
+                                mInterstitialAd.setAdListener(new AdListener() {
+                                    @Override
+                                    public void onAdClosed() {
+                                        super.onAdClosed();
+                                        goToDay();
+                                    }
+                                });
+
+                                mInterstitialAd.show();
+
                             }
                         })
                 .setNegativeButton(getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
@@ -358,6 +377,43 @@ public class TrainingActivity extends Activity {
         Log.e("QQQ", "play congrat<<");
         sp.play(soundCongratId, 1,1,1,0,1);
         Log.e("QQQ", ">>play congrat");
+    }
+
+
+    /**
+     * Загрузить рекламу
+     */
+    private void loadAd() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+        });
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.end_training_ad_unit_id));
+
+        // При ошибке загрузки меняем глобальную переменную
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                adLoadIsFailed = true;
+            }
+        });
+
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+    }
+
+
+    /**
+     * Убивает потоки и переходит в DayActivity
+     */
+    private void goToDay() {
+        handler.removeCallbacksAndMessages(null);
+
+        Intent intent = new Intent(TrainingActivity.this, DayActivity.class);
+        intent.putExtra("LEVEL", level);
+        intent.putExtra("DAY", day);
+        startActivity(intent);
     }
 
 }
