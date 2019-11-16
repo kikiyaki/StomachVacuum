@@ -31,6 +31,7 @@ public class ProgramSelection extends Activity {
         CardView card1 = (CardView) findViewById(R.id.level_card_1);
         CardView card2 = (CardView) findViewById(R.id.level_card_2);
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.exit_btn);
+        FloatingActionButton settingsButton = (FloatingActionButton) findViewById(R.id.settings_btn);
 
         card0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +66,15 @@ public class ProgramSelection extends Activity {
                 goBack();
             }
         });
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProgramSelection.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         ProgressBar bar0 = (ProgressBar) findViewById(R.id.level_progress_0);
         ProgressBar bar1 = (ProgressBar) findViewById(R.id.level_progress_1);
