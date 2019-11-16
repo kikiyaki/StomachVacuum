@@ -1,22 +1,23 @@
 package com.sportsandhealth.iamkerel.stomachvacuum;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
-
-import androidx.cardview.widget.CardView;
+import android.widget.TimePicker;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class SettingsActivity extends Activity {
+public class NotificationActivity extends Activity {
+
+    private TimePicker timePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_notification);
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.settings_to_home);
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.notifications_back);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,14 +25,12 @@ public class SettingsActivity extends Activity {
             }
         });
 
-        CardView card0 = (CardView) findViewById(R.id.notificationCard);
-        card0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SettingsActivity.this, NotificationActivity.class);
-                startActivity(intent);
-            }
-        });
+        timePicker = (TimePicker) findViewById(R.id.timePicker);
+        timePicker.setIs24HourView(true);
+    }
+
+    public void notificationButtonOnClick(View view) {
+
     }
 
     @Override
@@ -43,7 +42,8 @@ public class SettingsActivity extends Activity {
      * Метод для кнопки назад или кнопки выхода на макете
      */
     public void goBack() {
-        Intent intent = new Intent(SettingsActivity.this, ProgramSelection.class);
+        Intent intent = new Intent(NotificationActivity.this, SettingsActivity.class);
         startActivity(intent);
     }
+
 }

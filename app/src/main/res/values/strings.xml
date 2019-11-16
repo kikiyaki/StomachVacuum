@@ -44,6 +44,10 @@
     <string name="activated">Активировано</string>
     <string name="not_activated">Не активировано</string>
 
+    <string name="every_day">Каждый день</string>
+    <string name="enable">Включить</string>
+    <string name="disable">Выключить</string>
+
     <!-- Day activity -->
 
     <string name="stand_up">Вакуум стоя</string>
