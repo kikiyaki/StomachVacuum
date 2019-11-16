@@ -13,6 +13,7 @@ import com.sportsandhealth.iamkerel.stomachvacuum.MainActivity;
 import com.sportsandhealth.iamkerel.stomachvacuum.ProgramSelection;
 import com.sportsandhealth.iamkerel.stomachvacuum.R;
 import com.sportsandhealth.iamkerel.stomachvacuum.lib.MyNotification;
+import com.sportsandhealth.iamkerel.stomachvacuum.lib.NotificationHelper;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -74,8 +75,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         });
 
         // Регистрируем канал уведомлений
-        MyNotification myNotification = new MyNotification(this);
-        myNotification.createNotificationChannel();
+        NotificationHelper.createNotificationChannel(this);
 
     }
 
