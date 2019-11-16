@@ -32,6 +32,12 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/app_ad_id"/>
 
+        <receiver
+            android:name=".lib.NotificationBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false" >
+        </receiver>
+
     </application>
 
 </manifest>
