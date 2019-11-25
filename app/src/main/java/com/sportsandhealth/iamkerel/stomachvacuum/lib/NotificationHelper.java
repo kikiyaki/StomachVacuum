@@ -10,10 +10,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+
 import com.sportsandhealth.iamkerel.stomachvacuum.DB;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Помощник при создании напоминания
@@ -24,6 +30,10 @@ public class NotificationHelper {
     private static String name = "StomachVacuumChannel";
     private static String description = "StomachVacuumChannel";
     private static int notificationId = 777;
+
+    // Тэг задачи воркера для уведомления
+    private static final String workTag = "notificationWork";
+
 
     /**
      * Назначает повторяющееся каждый день уведомление в определенное время
@@ -36,17 +46,26 @@ public class NotificationHelper {
         // Для начала удалим существующие напоминания
         deleteNotification(context);
 
-        Intent notificationIntent = new Intent(context, NotificationBroadcastReceiver.class) ;
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-                0,
-                notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
 
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE );
-        assert alarmManager != null;
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(NotifyWorker.class,
+                30, TimeUnit.MINUTES)
+                .setInitialDelay(9, TimeUnit.HOURS)
+                .addTag(workTag)
+                .build();
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, date.getTime(),
-                1000*60*60*24, pendingIntent);
+
+        /*
+        OneTimeWorkRequest notificationWork = new OneTimeWorkRequest.Builder(NotifyWorker.class)
+                .setInitialDelay(5, TimeUnit.SECONDS)
+                .addTag(workTag)
+                .build();
+
+
+         */
+
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork("notificationWork",
+                ExistingPeriodicWorkPolicy.REPLACE,
+                periodicWorkRequest);
 
         // Запись в БД
         setNotificationDatabase(context, date);
