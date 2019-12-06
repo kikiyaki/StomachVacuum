@@ -9,15 +9,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DB extends SQLiteOpenHelper {
     protected static DB db = null;
     protected static SQLiteDatabase writableDB = null;
 
     protected DB(Context context) {
-        super(context, "SlimDB",null, 1);
+        super(context, "SlimDB",null, 2);
         writableDB = this.getWritableDatabase();
     }
 
@@ -28,8 +28,21 @@ public class DB extends SQLiteOpenHelper {
         return db;
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int OldVersion, int NewVersion) {
+
+        Log.e("QQQ", "onUpgrade from " + OldVersion + " to " + NewVersion);
+
+        switch (OldVersion) {
+            case 1:
+                upgradeFromFirst(db);
+                break;
+            default:
+                deleteAllDatabase();
+                onCreate(db);
+                db.setVersion(NewVersion);
+        }
     }
 
     public int[] getLevelProgress() {
@@ -175,13 +188,38 @@ public class DB extends SQLiteOpenHelper {
     }
 
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
+    /**
+     * Удалить все таблицы
+     */
+    private void deleteAllDatabase() {
+        Cursor c = writableDB.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
+        List<String> tables = new ArrayList<>();
 
+        while (c.moveToNext()) {
+            tables.add(c.getString(0));
+        }
+
+        for (String table : tables) {
+            String dropQuery = "DROP TABLE IF EXISTS " + table;
+            writableDB.execSQL(dropQuery);
+        }
+    }
+
+
+    /**
+     * Обновиться с первой версии базы данных
+     * В версии 1 есть только таблица DATA
+     */
+    private void upgradeFromFirst(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE NOTIFICATION ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 +"hour INTEGER, "
                 +"minute INTEGER);");
+    }
+
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("CREATE TABLE DATA ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
@@ -438,6 +476,12 @@ public class DB extends SQLiteOpenHelper {
         values.put("level", 2);values.put("day", 13);values.put("num", 7);values.put("time", 35);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
         values.put("level", 2);values.put("day", 13);values.put("num", 8);values.put("time", 35);values.put("exercise", 2);values.put("done", 0);db.insert("DATA", null, values);
 
+
+        // Таблица появилась в версии 2
+        db.execSQL("CREATE TABLE NOTIFICATION ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                +"hour INTEGER, "
+                +"minute INTEGER);");
 
     }
 
