@@ -34,7 +34,10 @@ public class NotificationHelper {
      */
     public static void schedule(Context context, Date date) {
 
+        // Создаем канал уведомлений
         createNotificationChannel(context);
+        // Удаляем строе напоминание
+        deleteNotification(context);
 
         long time = date.getTime();
         // Округлить до минут
@@ -47,7 +50,7 @@ public class NotificationHelper {
         PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
 
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, time, 60*1000, sender);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, time, 24*60*60*1000, sender);
 
         setNotificationDatabase(context, date);
 
@@ -86,11 +89,11 @@ public class NotificationHelper {
      * Отменить напоминание
      */
     public static void deleteNotification(Context context) {
-        Intent notificationIntent = new Intent(context, NotificationBroadcastReceiver.class) ;
+        Intent notificationIntent = new Intent(context, AlarmReceiver.class) ;
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
                 0,
                 notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                0);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(pendingIntent);

@@ -1,10 +1,14 @@
 package com.sportsandhealth.iamkerel.stomachvacuum;
 
 import android.app.Activity;
-import android.app.NotificationManager;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
@@ -80,6 +84,9 @@ public class NotificationActivity extends Activity {
 
         String dateString = DateFormat.getTimeInstance(DateFormat.SHORT).format(date);
         String toastText = getString(R.string.notification_was_created) + " " + dateString;
+
+        showAlertDialog();
+
         Toast.makeText(this, toastText, Toast.LENGTH_LONG)
                 .show();
     }
@@ -109,6 +116,51 @@ public class NotificationActivity extends Activity {
     public void goBack() {
         Intent intent = new Intent(NotificationActivity.this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+
+    /**
+     * Показать алерт о том что напоминалка может не работать
+     */
+    private void showAlertDialog() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+            String packageName = getPackageName();
+            if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NotificationActivity.this);
+                alertDialogBuilder.setTitle("");
+                alertDialogBuilder
+                        .setMessage(getResources().getString(R.string.notification_may_not_work))
+                        .setCancelable(false)
+                        .setPositiveButton(getResources().getString(R.string.yes),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                        String packageName = getPackageName();
+                                        Intent intent = new Intent();
+                                        intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                                        intent.setData(Uri.parse("package:" + packageName));
+                                        startActivity(intent);
+
+                                        dialog.cancel();
+                                    }
+                                })
+                        .setNegativeButton(getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+
+        }
+
+
     }
 
 }
