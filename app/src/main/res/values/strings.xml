@@ -44,6 +44,8 @@
     <string name="activated">Активировано</string>
     <string name="not_activated">Не активировано</string>
 
+    <!-- Notification Activity -->
+
     <string name="every_day">Каждый день</string>
     <string name="on">Вкл</string>
     <string name="off">Выкл</string>
@@ -53,6 +55,13 @@
 
     <string name="notification">Напоминание</string>
     <string name="time_to_training">Время тренировки!</string>
+
+    <string name="notification_may_not_work">Уведомления могут не работать
+        при отключеном приложении на некоторых устройствах
+        из-за оптимизации работы батареи. Вы можете добавить приложение в "белый список" чтобы
+        уведомления показывались даже после перезагрузки устройства.
+        Перейти в настройки?
+    </string>
 
     <!-- Day activity -->
 
