@@ -6,8 +6,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.sportsandhealth.iamkerel.stomachvacuum.Entry.ScreenSlidePagerActivity;
+import com.sportsandhealth.iamkerel.stomachvacuum.lib.NotificationHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +19,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Создаем базу данных
+        DB.getInstance(this);
+
         if (isFirstTime()) {
+            // При первом запуске ставим уведомления на текущее время,
+            // Первое через 24 часа
+            long time = System.currentTimeMillis();
+            time += 24*60*60*1000;
+            Date date = new Date();
+            date.setTime(time);
+            NotificationHelper.schedule(this, date);
+
             Intent intent = new Intent(this, ScreenSlidePagerActivity.class);
             startActivity(intent);
         } else {
