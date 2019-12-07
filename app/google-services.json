@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "836807355317",
+    "firebase_url": "https://kikiyaki.firebaseio.com",
+    "project_id": "kikiyaki",
+    "storage_bucket": "kikiyaki.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836807355317:android:54380201ebbed9e94947fc",
+        "android_client_info": {
+          "package_name": "com.sportsandhealth.iamkerel.stomachvacuum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836807355317-f2mcop9ikuu398d0tqudo5701joukarl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDReWay8BtJJtQwbZyTC_H-E9UUH-e2hnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836807355317-f2mcop9ikuu398d0tqudo5701joukarl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
