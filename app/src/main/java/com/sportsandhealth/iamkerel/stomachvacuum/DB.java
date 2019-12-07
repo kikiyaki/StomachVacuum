@@ -221,6 +221,8 @@ public class DB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
+        Log.e("QQQ", "onCreate DB");
+
         db.execSQL("CREATE TABLE DATA ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 +"level INTEGER, "      // уровень
