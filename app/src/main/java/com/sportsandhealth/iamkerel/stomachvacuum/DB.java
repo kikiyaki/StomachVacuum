@@ -17,7 +17,7 @@ public class DB extends SQLiteOpenHelper {
     protected static SQLiteDatabase writableDB = null;
 
     protected DB(Context context) {
-        super(context, "SlimDB",null, 2);
+        super(context, "SlimDB",null, 3);
         writableDB = this.getWritableDatabase();
     }
 
@@ -35,6 +35,9 @@ public class DB extends SQLiteOpenHelper {
         Log.e("QQQ", "onUpgrade from " + OldVersion + " to " + NewVersion);
 
         switch (OldVersion) {
+            case 2:
+                upgradeFromSecond(db);
+                break;
             case 1:
                 upgradeFromFirst(db);
                 break;
@@ -215,8 +218,24 @@ public class DB extends SQLiteOpenHelper {
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 +"hour INTEGER, "
                 +"minute INTEGER);");
+
+        db.execSQL("CREATE TABLE META_DATA ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                +"`key` VARCHAR(255), "
+                +"value VARCHAR(255));");
     }
 
+
+    /**
+     * Обновиться с первой версии базы данных
+     * В версии 2 есть таблицы DATA, NOTIFICATION
+     */
+    private void upgradeFromSecond(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE META_DATA ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                +"`key` VARCHAR(255), "
+                +"value VARCHAR(255));");
+    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -485,6 +504,12 @@ public class DB extends SQLiteOpenHelper {
                 +"hour INTEGER, "
                 +"minute INTEGER);");
 
+
+        // Таблица появилась в версии 3
+        db.execSQL("CREATE TABLE META_DATA ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                +"`key` VARCHAR(255), "
+                +"value VARCHAR(255));");
     }
 
 }
