@@ -37,12 +37,17 @@
     <!-- Settings activity -->
 
     <string name="settings">Настройки</string>
+
     <string name="notifications">Напоминания</string>
-    <string name="ad_free_version">Версия без рекламы</string>
     <string name="switch_on">Включено</string>
     <string name="switch_off">Выключено</string>
+
+    <string name="ad_free_version">Версия без рекламы</string>
     <string name="activated">Активировано</string>
     <string name="not_activated">Не активировано</string>
+
+    <string name="enter_promo_code">Ввести промокод</string>
+    <string name="enter_friend_promo_code">Ввести промокод друга</string>
 
     <!-- Notification Activity -->
 
@@ -62,6 +67,14 @@
         уведомления показывались даже после перезагрузки устройства.
         Перейти в настройки?
     </string>
+
+    <!-- MyPromoCodeActivity -->
+
+    <string name="my_promo_code">Мой промокод</string>
+    <string name="copy">Скопировать</string>
+    <string name="share">Поделиться</string>
+    <string name="promo_code_description">Когда другой пользователь установит приложение и
+    введет ваш промокод в разделе Ввести промокод, вся реклама будет отключена!</string>
 
     <!-- Day activity -->
 
@@ -145,15 +158,15 @@
 
 
   <string name="app_ad_id">ca-app-pub-8275330758485766~2662209244</string>
-
+    <!-- For Testing
   <string name="end_day_interstitial_ad_unit_id">ca-app-pub-8275330758485766/2616787844</string>
   <string name="day_interstitial_ad_unit_id">ca-app-pub-8275330758485766/3698941787</string>
   <string name="end_training_ad_unit_id">ca-app-pub-8275330758485766/9639002906</string>
 
   <string name="relax_banner_ad_unit_id">ca-app-pub-8275330758485766/2394772432</string>
 
+    -->
 
-    <!-- For Testing
 
       <string name="end_day_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
       <string name="day_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
@@ -161,6 +174,6 @@
 
       <string name="relax_banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
-    -->
+
 
 </resources>
