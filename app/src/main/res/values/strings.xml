@@ -76,6 +76,11 @@
     <string name="promo_code_description">Когда другой пользователь установит приложение и
     введет ваш промокод в разделе Ввести промокод, вся реклама будет отключена!</string>
 
+    <!-- EnterPromoCodeActivity -->
+
+    <string name="enter_promo_code__enter_promo_code">Ввести промокод</string>
+    <string name="enter_promo_code__send">Отправить</string>
+
     <!-- Day activity -->
 
     <string name="stand_up">Вакуум стоя</string>
