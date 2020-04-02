@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.MyPromoCodeActivity;
 import com.sportsandhealth.iamkerel.stomachvacuum.lib.NotificationHelper;
 
 public class SettingsActivity extends Activity {
@@ -41,6 +42,15 @@ public class SettingsActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SettingsActivity.this, NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        CardView card1 = (CardView) findViewById(R.id.adFreeCard);
+        card1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, MyPromoCodeActivity.class);
                 startActivity(intent);
             }
         });

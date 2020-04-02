@@ -6,11 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.sportsandhealth.iamkerel.stomachvacuum.NotificationActivity;
 import com.sportsandhealth.iamkerel.stomachvacuum.R;
 import com.sportsandhealth.iamkerel.stomachvacuum.SettingsActivity;
 
-public class MyPromoCode extends Activity {
+public class MyPromoCodeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,7 @@ public class MyPromoCode extends Activity {
      * Метод для кнопки назад или кнопки выхода на макете
      */
     public void goBack() {
-        Intent intent = new Intent(MyPromoCode.this, SettingsActivity.class);
+        Intent intent = new Intent(MyPromoCodeActivity.this, SettingsActivity.class);
         startActivity(intent);
     }
 
