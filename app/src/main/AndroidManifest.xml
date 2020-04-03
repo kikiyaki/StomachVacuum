@@ -37,6 +37,7 @@
         <activity android:name=".NotificationActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".Promo.MyPromoCodeActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".Promo.EnterPromoCodeActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".Promo.NoPromoCodeActivity"  android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

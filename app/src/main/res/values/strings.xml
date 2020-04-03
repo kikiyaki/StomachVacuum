@@ -81,6 +81,13 @@
     <string name="enter_promo_code__enter_promo_code">Ввести промокод</string>
     <string name="enter_promo_code__send">Отправить</string>
 
+    <!-- NoPromoCodeActivity -->
+
+    <string name="no_promo_code__promo_code_not_created">Промокод не создан</string>
+    <string name="no_promo_code__description">По какой-то причине промокод не был создан.
+    Проверьте соединение с интернетом или повторите позже.</string>
+    <string name="no_promo_code__repeat">Повторить</string>
+
     <!-- Day activity -->
 
     <string name="stand_up">Вакуум стоя</string>

@@ -3,6 +3,7 @@ package com.sportsandhealth.iamkerel.stomachvacuum.Promo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,12 +26,14 @@ public class MyPromoCodeActivity extends Activity {
             }
         });
 
-        String code;
+        String code = "";
         PromoCode promoCode = new PromoCode(this);
         if (promoCode.isExist()) {
             code = promoCode.code();
         } else {
-            code = "none";
+            Intent intent = new Intent(MyPromoCodeActivity.this,
+                    NoPromoCodeActivity.class);
+            startActivity(intent);
         }
         TextView codeTextView = (TextView) findViewById(R.id.my_promo_code);
         codeTextView.setText(code);
