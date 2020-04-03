@@ -508,7 +508,7 @@ public class DB extends SQLiteOpenHelper {
         // Таблица появилась в версии 3
         db.execSQL("CREATE TABLE META_DATA ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                +"`key` VARCHAR(255), "
+                +"`key` VARCHAR(255) UNIQUE, "
                 +"value VARCHAR(255));");
     }
 
