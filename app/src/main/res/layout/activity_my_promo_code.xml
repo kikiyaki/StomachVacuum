@@ -33,12 +33,13 @@
             android:text="@string/copy" />
 
         <TextView
+            android:id="@+id/my_promo_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/basic"
             android:textSize="@dimen/h2"
-            android:text="REF1A"/>
+            android:text=""/>
 
         <Button
             android:layout_width="150dp"

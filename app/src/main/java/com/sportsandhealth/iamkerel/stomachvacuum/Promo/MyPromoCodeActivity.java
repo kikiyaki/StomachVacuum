@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sportsandhealth.iamkerel.stomachvacuum.R;
@@ -23,6 +24,16 @@ public class MyPromoCodeActivity extends Activity {
                 goBack();
             }
         });
+
+        String code;
+        PromoCode promoCode = new PromoCode(this);
+        if (promoCode.isExist()) {
+            code = promoCode.code();
+        } else {
+            code = "none";
+        }
+        TextView codeTextView = (TextView) findViewById(R.id.my_promo_code);
+        codeTextView.setText(code);
     }
 
     @Override

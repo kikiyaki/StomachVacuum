@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.sportsandhealth.iamkerel.stomachvacuum.Entry.ScreenSlidePagerActivity;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCode;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCodeCreated;
 import com.sportsandhealth.iamkerel.stomachvacuum.lib.NotificationHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Создаем базу данных
         DB.getInstance(this);
+
+        PromoCode promoCode = new PromoCode(this);
+        if (!promoCode.isExist()) {
+            PromoCodeCreated promoCodeCreated = new PromoCodeCreated(this);
+            promoCodeCreated.create();
+        }
 
         if (isFirstTime()) {
             // При первом запуске ставим уведомления на текущее время,
