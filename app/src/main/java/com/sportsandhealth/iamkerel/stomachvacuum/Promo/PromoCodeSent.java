@@ -19,6 +19,9 @@ import com.android.volley.toolbox.Volley;
  *          new PromoCodeSent.OnErrorListener() {
  *              public void onError() {
  *                  ...
+ *              };
+ *              public void onSuccess() {
+ *                  ...
  *              }
  *          });
  * promoCodeSent.send("REF123");
