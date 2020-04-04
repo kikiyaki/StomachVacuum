@@ -22,13 +22,15 @@ public class EnterPromoCodeActivity extends Activity {
         final PromoCodeSent promoCodeSent = new PromoCodeSent(this, new PromoCodeSent.OnResponseListener() {
             @Override
             public void onError() {
-                Toast toast = Toast.makeText(EnterPromoCodeActivity.this, "Error", Toast.LENGTH_LONG);
+                String errorText = getResources().getString(R.string.enter_promo_code__error);
+                Toast toast = Toast.makeText(EnterPromoCodeActivity.this, errorText, Toast.LENGTH_LONG);
                 toast.show();
             }
 
             @Override
             public void onSuccess() {
-                Toast toast = Toast.makeText(EnterPromoCodeActivity.this, "Success", Toast.LENGTH_LONG);
+                String successText = getResources().getString(R.string.enter_promo_code__success);
+                Toast toast = Toast.makeText(EnterPromoCodeActivity.this, successText, Toast.LENGTH_LONG);
                 toast.show();
             }
         });
