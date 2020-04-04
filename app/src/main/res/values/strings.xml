@@ -80,6 +80,8 @@
 
     <string name="enter_promo_code__enter_promo_code">Ввести промокод</string>
     <string name="enter_promo_code__send">Отправить</string>
+    <string name="enter_promo_code__success">Промокод отправлен</string>
+    <string name="enter_promo_code__error">Ошибка</string>
 
     <!-- NoPromoCodeActivity -->
 
