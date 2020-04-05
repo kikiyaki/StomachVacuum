@@ -16,6 +16,8 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCode;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCodeUnlock;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,10 +33,11 @@ public class DayActivity extends Activity {
     public static int day;
 
     private InterstitialAd mInterstitialAd;
-
     // При ошибке загрузки ставится true
     // Например если выключен интернет
     private boolean adLoadingIsFailed = false;
+    // По умолчанию не показывать рекламу
+    private boolean showAd = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,33 @@ public class DayActivity extends Activity {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {}
         });
+
+        PromoCode promoCode = new PromoCode(this);
+        PromoCodeUnlock promoCodeUnlock = new PromoCodeUnlock(this,
+                new PromoCodeUnlock.OnResponseListener() {
+                    @Override
+                    public void onUnlockTrue() {
+                        showAd = false;
+                    }
+
+                    @Override
+                    public void onUnlockFalse() {
+                        showAd = true;
+                    }
+
+                    @Override
+                    public void onError() {
+                        showAd = false;
+                    }
+                });
+        if (promoCodeUnlock.isUnlock()) {
+            showAd = false;
+        } else {
+            showAd = true;
+            if (promoCode.isExist()) {
+                promoCodeUnlock.unlock();
+            }
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day);
@@ -123,40 +153,41 @@ public class DayActivity extends Activity {
         intent.putExtra("DAY", DayActivity.day);
 
         // Если не удалось загрузить рекламу (например выключен инет)
+        // Или по логике промокодов не нужно показывать рекламу
         // Сразу переходим в тренировку
-        if (adLoadingIsFailed) {
+        if (adLoadingIsFailed || !showAd) {
             startActivity(intent);
-        }
-
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.setAdListener(new AdListener() {
-                // При закрытии рекламы переходим на тренировку
-                @Override
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    startActivity(intent);
-                }
-            });
-
-            mInterstitialAd.show();
-
         } else {
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    mInterstitialAd.show();
-                }
 
-                @Override
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    startActivity(intent);
-                }
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.setAdListener(new AdListener() {
+                    // При закрытии рекламы переходим на тренировку
+                    @Override
+                    public void onAdClosed() {
+                        super.onAdClosed();
+                        startActivity(intent);
+                    }
+                });
 
-            });
+                mInterstitialAd.show();
+            } else {
+                mInterstitialAd.setAdListener(new AdListener() {
+                    @Override
+                    public void onAdLoaded() {
+                        super.onAdLoaded();
+                        mInterstitialAd.show();
+                    }
+
+                    @Override
+                    public void onAdClosed() {
+                        super.onAdClosed();
+                        startActivity(intent);
+                    }
+
+                });
+            }
+
         }
-
     }
 
     @Override
