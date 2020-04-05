@@ -24,6 +24,7 @@
             android:text="@string/my_promo_code"/>
 
         <Button
+            android:id="@+id/my_promo_code__copy_button"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -42,6 +43,7 @@
             android:text=""/>
 
         <Button
+            android:id="@+id/my_promo_code__share_button"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
