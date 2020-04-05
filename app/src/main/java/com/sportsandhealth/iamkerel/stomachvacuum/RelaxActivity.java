@@ -17,6 +17,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCode;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCodeUnlock;
 
 public class RelaxActivity extends Activity {
     int level;
@@ -38,20 +40,51 @@ public class RelaxActivity extends Activity {
     Intent intentNext;
 
     private AdView mAdView;
+    // По умолчанию не показывать рекламу
+    private boolean showAd = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        PromoCode promoCode = new PromoCode(this);
+        PromoCodeUnlock promoCodeUnlock = new PromoCodeUnlock(this,
+                new PromoCodeUnlock.OnResponseListener() {
+                    @Override
+                    public void onUnlockTrue() {
+                        showAd = false;
+                    }
+
+                    @Override
+                    public void onUnlockFalse() {
+                        showAd = true;
+                    }
+
+                    @Override
+                    public void onError() {
+                        showAd = false;
+                    }
+                });
+        if (promoCodeUnlock.isUnlock()) {
+            showAd = false;
+        } else {
+            showAd = true;
+            if (promoCode.isExist()) {
+                promoCodeUnlock.unlock();
+            }
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relax);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        if (showAd) {
+            MobileAds.initialize(this, new OnInitializationCompleteListener() {
+                @Override
+                public void onInitializationComplete(InitializationStatus initializationStatus) {
+                }
+            });
+            mAdView = findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
 
         progressBar = (ProgressBar) findViewById(R.id.relax_progress);
         relaxTime = (TextView) findViewById(R.id.relax_time);

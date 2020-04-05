@@ -26,6 +26,8 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCode;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCodeUnlock;
 
 import java.io.IOException;
 
@@ -65,9 +67,38 @@ public class TrainingActivity extends Activity {
 
     private InterstitialAd mInterstitialAd;
     private boolean adLoadIsFailed = false;
+    // По умолчанию не показывать рекламу
+    private boolean showAd = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        PromoCode promoCode = new PromoCode(this);
+        PromoCodeUnlock promoCodeUnlock = new PromoCodeUnlock(this,
+                new PromoCodeUnlock.OnResponseListener() {
+                    @Override
+                    public void onUnlockTrue() {
+                        showAd = false;
+                    }
+
+                    @Override
+                    public void onUnlockFalse() {
+                        showAd = true;
+                    }
+
+                    @Override
+                    public void onError() {
+                        showAd = false;
+                    }
+                });
+        if (promoCodeUnlock.isUnlock()) {
+            showAd = false;
+        } else {
+            showAd = true;
+            if (promoCode.isExist()) {
+                promoCodeUnlock.unlock();
+            }
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
@@ -322,20 +353,20 @@ public class TrainingActivity extends Activity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
-                                if (adLoadIsFailed) {
+                                if (adLoadIsFailed || !showAd) {
                                     goToDay();
+                                } else {
+                                    // Показываем рекламу и переходим в DayActivity по закритии рекламы
+                                    mInterstitialAd.setAdListener(new AdListener() {
+                                        @Override
+                                        public void onAdClosed() {
+                                            super.onAdClosed();
+                                            goToDay();
+                                        }
+                                    });
+
+                                    mInterstitialAd.show();
                                 }
-
-                                // Показываем рекламу и переходим в DayActivity по закритии рекламы
-                                mInterstitialAd.setAdListener(new AdListener() {
-                                    @Override
-                                    public void onAdClosed() {
-                                        super.onAdClosed();
-                                        goToDay();
-                                    }
-                                });
-
-                                mInterstitialAd.show();
 
                             }
                         })

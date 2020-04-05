@@ -12,13 +12,44 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.AdRequest;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCode;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCodeUnlock;
 
 public class EndDayActivity extends Activity {
     private int level;
     private InterstitialAd mInterstitialAd;
+    // По умолчанию не показывать рекламу
+    private boolean showAd = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        PromoCode promoCode = new PromoCode(this);
+        PromoCodeUnlock promoCodeUnlock = new PromoCodeUnlock(this,
+                new PromoCodeUnlock.OnResponseListener() {
+                    @Override
+                    public void onUnlockTrue() {
+                        showAd = false;
+                    }
+
+                    @Override
+                    public void onUnlockFalse() {
+                        showAd = true;
+                    }
+
+                    @Override
+                    public void onError() {
+                        showAd = false;
+                    }
+                });
+        if (promoCodeUnlock.isUnlock()) {
+            showAd = false;
+        } else {
+            showAd = true;
+            if (promoCode.isExist()) {
+                promoCodeUnlock.unlock();
+            }
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_day);
 
@@ -28,24 +59,26 @@ public class EndDayActivity extends Activity {
         level = intent.getIntExtra("LEVEL", 0);
 
 
-        // Реклама
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {}
-        });
+        if (showAd) {
+            // Реклама
+            MobileAds.initialize(this, new OnInitializationCompleteListener() {
+                @Override
+                public void onInitializationComplete(InitializationStatus initializationStatus) {}
+            });
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.end_day_interstitial_ad_unit_id));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            mInterstitialAd = new InterstitialAd(this);
+            mInterstitialAd.setAdUnitId(getString(R.string.end_day_interstitial_ad_unit_id));
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
-        // Показывает просто после загрузки
-        // Сработает даже после перехода на другую активность
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                mInterstitialAd.show();
-            }
-        });
+            // Показывает просто после загрузки
+            // Сработает даже после перехода на другую активность
+            mInterstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    mInterstitialAd.show();
+                }
+            });
+        }
 
     }
 
