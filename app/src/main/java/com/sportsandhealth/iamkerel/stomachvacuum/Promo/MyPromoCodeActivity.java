@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,17 +27,34 @@ public class MyPromoCodeActivity extends Activity {
             }
         });
 
-        String code = "";
-        PromoCode promoCode = new PromoCode(this);
+        final String code;
+        final PromoCode promoCode = new PromoCode(this);
         if (promoCode.isExist()) {
             code = promoCode.code();
+
+            TextView codeTextView = (TextView) findViewById(R.id.my_promo_code);
+            codeTextView.setText(code);
+
+            Button shareButton = (Button) findViewById(R.id.my_promo_code__share_button);
+            shareButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT,
+                            getResources().getString(R.string.my_promo_code__share_text)
+                                    + code);
+                    sendIntent.setType("text/plain");
+
+                    Intent shareIntent = Intent.createChooser(sendIntent, null);
+                    startActivity(shareIntent);
+                }
+            });
         } else {
             Intent intent = new Intent(MyPromoCodeActivity.this,
                     NoPromoCodeActivity.class);
             startActivity(intent);
         }
-        TextView codeTextView = (TextView) findViewById(R.id.my_promo_code);
-        codeTextView.setText(code);
     }
 
     @Override

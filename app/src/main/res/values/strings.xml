@@ -75,6 +75,11 @@
     <string name="share">Поделиться</string>
     <string name="promo_code_description">Когда другой пользователь установит приложение и
     введет ваш промокод в разделе Ввести промокод, вся реклама будет отключена!</string>
+    <string name="my_promo_code__share_text">https://play.google.com/store/apps/details?id=com.sportsandhealth.iamkerel.stomachvacuum
+    \nПривет, попробуй приложение Вакуум Живота! Не забудь ввести мой промокод
+    в настройках в разделе Ввести промокод.
+    \n
+    \nПромокод: </string>
 
     <!-- EnterPromoCodeActivity -->
 
