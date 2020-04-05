@@ -36,6 +36,10 @@ public class ScreenSlidePageFragment extends Fragment {
                 entryText1.setText(getString(R.string.entry_first2));
                 entryText2.setText(getString(R.string.entry_second2));
                 break;
+            case 3:
+                entryText1.setText(getString(R.string.entry_first3));
+                entryText2.setText(getString(R.string.entry_second3));
+                break;
         }
 
         return rootView;
