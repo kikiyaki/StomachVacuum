@@ -80,6 +80,7 @@
     в настройках в разделе Ввести промокод.
     \n
     \nПромокод: </string>
+    <string name="my_promo_code__code_copied">Промокод скопирован</string>
 
     <!-- EnterPromoCodeActivity -->
 

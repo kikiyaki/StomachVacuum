@@ -1,12 +1,15 @@
 package com.sportsandhealth.iamkerel.stomachvacuum.Promo;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sportsandhealth.iamkerel.stomachvacuum.R;
@@ -48,6 +51,20 @@ public class MyPromoCodeActivity extends Activity {
 
                     Intent shareIntent = Intent.createChooser(sendIntent, null);
                     startActivity(shareIntent);
+                }
+            });
+
+            Button copyButton = (Button) findViewById(R.id.my_promo_code__copy_button);
+            copyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("StomachVacuum", code);
+                    clipboard.setPrimaryClip(clip);
+
+                    String toastText = getResources().getString(R.string.my_promo_code__code_copied);
+                    Toast.makeText(MyPromoCodeActivity.this, toastText, Toast.LENGTH_LONG)
+                            .show();
                 }
             });
         } else {
