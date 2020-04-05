@@ -2,6 +2,7 @@ package com.sportsandhealth.iamkerel.stomachvacuum.Entry;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
-    private static final int NUM_PAGES = 3;
+    private static final int NUM_PAGES = 4;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -43,6 +44,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     ImageView dot0;
     ImageView dot1;
     ImageView dot2;
+    ImageView dot3;
 
     FloatingActionButton fab;
 
@@ -60,6 +62,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         dot0 = findViewById(R.id.dot0);
         dot1 = findViewById(R.id.dot1);
         dot2 = findViewById(R.id.dot2);
+        dot3 = findViewById(R.id.dot3);
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -121,21 +124,30 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         public void onPageSelected(int i) {
             switch (i) {
                 case 0:
-                dot0.setImageResource(R.drawable.dot1);
-                dot1.setImageResource(R.drawable.dot0);
-                dot2.setImageResource(R.drawable.dot0);
-                break;
+                    dot0.setImageResource(R.drawable.dot1);
+                    dot1.setImageResource(R.drawable.dot0);
+                    dot2.setImageResource(R.drawable.dot0);
+                    dot3.setImageResource(R.drawable.dot0);
+                    break;
 
                 case 1:
                     dot0.setImageResource(R.drawable.dot0);
                     dot1.setImageResource(R.drawable.dot1);
                     dot2.setImageResource(R.drawable.dot0);
+                    dot3.setImageResource(R.drawable.dot0);
                     break;
 
                 case 2:
                     dot0.setImageResource(R.drawable.dot0);
                     dot1.setImageResource(R.drawable.dot0);
                     dot2.setImageResource(R.drawable.dot1);
+                    dot3.setImageResource(R.drawable.dot0);
+                    break;
+                case 3:
+                    dot0.setImageResource(R.drawable.dot0);
+                    dot1.setImageResource(R.drawable.dot0);
+                    dot2.setImageResource(R.drawable.dot0);
+                    dot3.setImageResource(R.drawable.dot1);
                     break;
             }
         }
