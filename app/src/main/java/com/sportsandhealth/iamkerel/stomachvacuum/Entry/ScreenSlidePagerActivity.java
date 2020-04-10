@@ -68,7 +68,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mPager.getCurrentItem() < 2) {
+                if (mPager.getCurrentItem() < 3) {
                     mPager.setCurrentItem(mPager.getCurrentItem() + 1);
                 } else {
                     Intent intent = new Intent(ScreenSlidePagerActivity.this, ProgramSelection.class);

@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sportsandhealth.iamkerel.stomachvacuum.Promo.EnterPromoCodeActivity;
 import com.sportsandhealth.iamkerel.stomachvacuum.Promo.MyPromoCodeActivity;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCode;
 import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCodeUnlock;
 import com.sportsandhealth.iamkerel.stomachvacuum.lib.NotificationHelper;
 
@@ -60,7 +61,14 @@ public class SettingsActivity extends Activity {
             adFreeStatus.setText(getResources().getString(R.string.activated));
             adFreeStatus.setTextColor(getResources().getColor(R.color.basic));
         } else {
-            promoCodeUnlock.unlock();
+            PromoCode promoCode = new PromoCode(this);
+            if (promoCode.isExist()) {
+                promoCodeUnlock.unlock();
+            } else {
+                TextView adFreeStatus = (TextView) findViewById(R.id.adFreeStatus);
+                adFreeStatus.setText(R.string.not_activated);
+                adFreeStatus.setTextColor(getResources().getColor(R.color.light_grey_blue));
+            }
         }
 
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.settings_to_home);
