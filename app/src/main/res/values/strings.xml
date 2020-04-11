@@ -54,6 +54,13 @@
     <string name="enter_promo_code">Ввести промокод</string>
     <string name="enter_friend_promo_code">Ввести промокод друга</string>
 
+    <string name="settings_activity__progress_removal_title">Удалить прогресс</string>
+    <string name="settings_activity__progress_removal_description">Удалить весь прогресс</string>
+    <string name="settings_activity__progress_removal_promo_title">Удалить весь прогресс?</string>
+    <string name="settings_activity__progress_removal_promo_description">Будет удален весь достигнутый результат тренировок на всех уровнях</string>
+    <string name="settings_activity__progress_removal_promo_yes">Да</string>
+    <string name="settings_activity__progress_removal_promo_no">Нет</string>
+
     <!-- Notification Activity -->
 
     <string name="every_day">Каждый день</string>

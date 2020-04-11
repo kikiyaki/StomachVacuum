@@ -1,6 +1,8 @@
 package com.sportsandhealth.iamkerel.stomachvacuum;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
@@ -15,6 +17,7 @@ import com.sportsandhealth.iamkerel.stomachvacuum.Promo.MyPromoCodeActivity;
 import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCode;
 import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCodeUnlock;
 import com.sportsandhealth.iamkerel.stomachvacuum.lib.NotificationHelper;
+import com.sportsandhealth.iamkerel.stomachvacuum.lib.ProgressRemoval;
 
 public class SettingsActivity extends Activity {
 
@@ -103,6 +106,33 @@ public class SettingsActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(SettingsActivity.this, EnterPromoCodeActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        CardView card3 = (CardView) findViewById(R.id.progressRemovalCard);
+        card3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SettingsActivity.this);
+                alertDialogBuilder.setTitle(getResources().getString(R.string.settings_activity__progress_removal_promo_title));
+                alertDialogBuilder
+                        .setMessage(R.string.settings_activity__progress_removal_promo_description)
+                        .setCancelable(false)
+                        .setPositiveButton(getResources().getString(R.string.settings_activity__progress_removal_promo_yes),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        ProgressRemoval progressRemoval = new ProgressRemoval(SettingsActivity.this);
+                                        progressRemoval.remove();
+                                    }
+                                })
+                        .setNegativeButton(getResources().getString(R.string.settings_activity__progress_removal_promo_no),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
     }
