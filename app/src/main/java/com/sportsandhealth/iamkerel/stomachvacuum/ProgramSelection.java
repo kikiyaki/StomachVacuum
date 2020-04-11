@@ -2,17 +2,13 @@ package com.sportsandhealth.iamkerel.stomachvacuum;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.cardview.widget.CardView;
@@ -23,9 +19,6 @@ public class ProgramSelection extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Log.e("ddddd", "sdfsdfsdfsdfc");
-
         setContentView(R.layout.activity_program_selection);
 
         CardView card0 = (CardView) findViewById(R.id.level_card_0);
@@ -118,9 +111,6 @@ public class ProgramSelection extends Activity {
                 .setPositiveButton(getResources().getString(R.string.yes),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                //moveTaskToBack(true);
-                                //android.os.Process.killProcess(android.os.Process.myPid());
-                                //System.exit(1);
                                 ProgramSelection.this.finishAffinity();
                                 System.exit(0);
                             }

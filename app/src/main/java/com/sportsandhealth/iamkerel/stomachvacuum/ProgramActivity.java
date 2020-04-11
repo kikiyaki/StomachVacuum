@@ -3,11 +3,11 @@ package com.sportsandhealth.iamkerel.stomachvacuum;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sportsandhealth.iamkerel.stomachvacuum.lib.CurrentContext;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +26,7 @@ public class ProgramActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_program);
+        CurrentContext.set(this);
 
         // Set selected level
         Intent intent = getIntent();

@@ -125,6 +125,11 @@
 
     <string name="day_complete">План выполнен!</string>
     <string name="to_program">Ок</string>
+    <string name="end_day_activity__promo_title">Отключить рекламу?</string>
+    <string name="end_day_activity__promo_description">Вы можете полностью отключить рекламу в
+        приложении, пригласив друга!</string>
+    <string name="end_day_activity__yes">Да</string>
+    <string name="end_day_activity__no">Нет</string>
 
     <!-- Help activity -->
 
