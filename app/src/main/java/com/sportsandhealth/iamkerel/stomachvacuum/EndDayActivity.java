@@ -3,7 +3,6 @@ package com.sportsandhealth.iamkerel.stomachvacuum;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.ads.AdListener;
@@ -14,6 +13,8 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import com.google.android.gms.ads.AdRequest;
 import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCode;
 import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCodeUnlock;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoModal;
+import com.sportsandhealth.iamkerel.stomachvacuum.lib.CurrentContext;
 
 public class EndDayActivity extends Activity {
     private int level;
@@ -23,6 +24,8 @@ public class EndDayActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        CurrentContext.set(this);
+
         PromoCode promoCode = new PromoCode(this);
         PromoCodeUnlock promoCodeUnlock = new PromoCodeUnlock(this,
                 new PromoCodeUnlock.OnResponseListener() {
@@ -53,11 +56,8 @@ public class EndDayActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_day);
 
-        Log.e("QQQ", "Start End Day");
-
         Intent intent = getIntent();
         level = intent.getIntExtra("LEVEL", 0);
-
 
         if (showAd) {
             // Реклама
@@ -76,6 +76,15 @@ public class EndDayActivity extends Activity {
                 @Override
                 public void onAdLoaded() {
                     mInterstitialAd.show();
+                }
+
+                @Override
+                public void onAdClosed() {
+                    super.onAdClosed();
+                    PromoModal promoModal = new PromoModal();
+                    if (!promoModal.isShown()) {
+                        promoModal.show();
+                    }
                 }
             });
         }
