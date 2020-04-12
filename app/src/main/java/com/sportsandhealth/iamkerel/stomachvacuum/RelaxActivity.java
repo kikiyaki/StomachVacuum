@@ -39,52 +39,13 @@ public class RelaxActivity extends Activity {
 
     Intent intentNext;
 
-    private AdView mAdView;
-    // По умолчанию не показывать рекламу
-    private boolean showAd = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        PromoCode promoCode = new PromoCode(this);
-        PromoCodeUnlock promoCodeUnlock = new PromoCodeUnlock(this,
-                new PromoCodeUnlock.OnResponseListener() {
-                    @Override
-                    public void onUnlockTrue() {
-                        showAd = false;
-                    }
-
-                    @Override
-                    public void onUnlockFalse() {
-                        showAd = true;
-                    }
-
-                    @Override
-                    public void onError() {
-                        showAd = false;
-                    }
-                });
-        if (promoCodeUnlock.isUnlock()) {
-            showAd = false;
-        } else {
-            showAd = true;
-            if (promoCode.isExist()) {
-                promoCodeUnlock.unlock();
-            }
-        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relax);
 
-        if (showAd) {
-            MobileAds.initialize(this, new OnInitializationCompleteListener() {
-                @Override
-                public void onInitializationComplete(InitializationStatus initializationStatus) {
-                }
-            });
-            mAdView = findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
-        }
+
 
         progressBar = (ProgressBar) findViewById(R.id.relax_progress);
         relaxTime = (TextView) findViewById(R.id.relax_time);
