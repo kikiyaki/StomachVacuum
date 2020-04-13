@@ -30,7 +30,7 @@ public class PromoModal {
         if (cursor.getCount() >= 1) {
             cursor.moveToFirst();
             String value = cursor.getString(0);
-            int impressionsCount = Integer.getInteger(value);
+            int impressionsCount = Integer.parseInt(value);
             cursor.close();
             return impressionsCount >= thresholdCount;
         } else {
@@ -78,7 +78,7 @@ public class PromoModal {
         if (cursor.getCount() >= 1) {
             cursor.moveToFirst();
             String value = cursor.getString(0);
-            int impressionsCount = Integer.getInteger(value);
+            int impressionsCount = Integer.parseInt(value);
             impressionsCount++;
 
             ContentValues values = new ContentValues();
