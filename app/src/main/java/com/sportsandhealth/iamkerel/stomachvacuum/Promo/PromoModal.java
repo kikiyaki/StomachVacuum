@@ -16,6 +16,7 @@ import com.sportsandhealth.iamkerel.stomachvacuum.lib.CurrentContext;
  */
 public class PromoModal {
     private DB db;
+    private int thresholdCount = 2;
 
     public PromoModal() {
         this.db = DB.getInstance(CurrentContext.get());
@@ -24,11 +25,14 @@ public class PromoModal {
     public boolean isShown() {
         Cursor cursor = this.db
                 .getWritableDatabase()
-                .rawQuery("SELECT * FROM META_DATA WHERE `key`='promo_window_is_shown'",
+                .rawQuery("SELECT value FROM META_DATA WHERE `key`='promo_window_impressions'",
                         null);
         if (cursor.getCount() >= 1) {
+            cursor.moveToFirst();
+            String value = cursor.getString(0);
+            int impressionsCount = Integer.parseInt(value);
             cursor.close();
-            return true;
+            return impressionsCount >= thresholdCount;
         } else {
             cursor.close();
             return false;
@@ -60,17 +64,36 @@ public class PromoModal {
                         });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
-        write();
+        increase();
     }
 
     /**
-     * Write show mark in database
+     * Increase impressions counter
      */
-    private void write() {
-        ContentValues values = new ContentValues();
-        values.put("key", "promo_window_is_shown");
-        values.put("value", "1");
-        db.getWritableDatabase()
-                .insert("META_DATA", null, values);
+    private void increase() {
+        Cursor cursor = this.db
+                .getWritableDatabase()
+                .rawQuery("SELECT value FROM META_DATA WHERE `key`='promo_window_impressions'",
+                        null);
+        if (cursor.getCount() >= 1) {
+            cursor.moveToFirst();
+            String value = cursor.getString(0);
+            int impressionsCount = Integer.parseInt(value);
+            impressionsCount++;
+
+            ContentValues values = new ContentValues();
+            values.put("key", "promo_window_impressions");
+            values.put("value", String.valueOf(impressionsCount));
+            db.getWritableDatabase()
+                    .update("META_DATA", values, "key=?", new String[]{"promo_window_impressions"});
+            cursor.close();
+        } else {
+            ContentValues values = new ContentValues();
+            values.put("key", "promo_window_impressions");
+            values.put("value", "1");
+            db.getWritableDatabase()
+                    .insert("META_DATA", null, values);
+            cursor.close();
+        }
     }
 }
