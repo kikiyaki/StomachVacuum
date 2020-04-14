@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RelaxActivity"
+    android:background="@color/back_black_black">
+
+    <TextView
+        android:id="@+id/relax_title"
+        android:layout_above="@id/relax_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/h1"
+        android:text="@string/relax"/>
+
+    <ProgressBar
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        style="?android:progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/back_circle_relax"
+        android:progress="100"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"/>
+    <ProgressBar
+        android:id="@+id/relax_progress"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        style="?android:progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/primary_circle_relax"
+        android:progress="30"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/relax_time"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:textSize="@dimen/h2"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/relax_skip"
+        android:layout_below="@id/relax_progress"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/skip"
+        android:textColor="@color/basic"
+        android:textSize="@dimen/h2"/>
+
+    <View
+        android:id="@+id/bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"/>
+
+    <TextView
+        android:id="@+id/relax_next"
+        android:layout_alignStart="@id/bottom_view"
+        android:layout_alignTop="@id/bottom_view"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        android:textSize="@dimen/h3"
+        android:textColor="@color/text"/>
+
+    <TextView
+        android:id="@+id/relax_next_exercise"
+        android:layout_below="@id/relax_next"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text"
+        android:textSize="@dimen/h3"/>
+
+    <TextView
+        android:id="@+id/relax_next_time"
+        android:layout_below="@id/relax_next"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/h3"
+        android:textColor="@color/basic"/>
+
+</RelativeLayout>
