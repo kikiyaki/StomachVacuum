@@ -16,14 +16,14 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.formats.MediaView;
-import com.google.android.gms.ads.formats.NativeAdOptions;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAdView;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCode;
+import com.sportsandhealth.iamkerel.stomachvacuum.Promo.PromoCodeUnlock;
 
 
 public class RelaxActivity extends Activity {
@@ -44,28 +44,61 @@ public class RelaxActivity extends Activity {
     TextView relaxNextTime;
 
     Intent intentNext;
+    boolean showAd = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_relax);
 
-        MobileAds.initialize(this);
-
-        AdLoader adLoader = new AdLoader.Builder(this, getString(R.string.relax_native_ad_unit_id))
-                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+        PromoCode promoCode = new PromoCode(this);
+        PromoCodeUnlock promoCodeUnlock = new PromoCodeUnlock(this,
+                new PromoCodeUnlock.OnResponseListener() {
                     @Override
-                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                        UnifiedNativeAdView unifiedNativeAdView = (UnifiedNativeAdView) getLayoutInflater().inflate(R.layout.native_ad_layout, null);
-                        mapUnifiedNativeAdToLayout(unifiedNativeAd, unifiedNativeAdView);
-
-                        FrameLayout nativeAdLayout = findViewById(R.id.id_native_ad);
-                        nativeAdLayout.removeAllViews();
-                        nativeAdLayout.addView(unifiedNativeAdView);
+                    public void onUnlockTrue() {
+                        showAd = false;
                     }
-                })
-                .build();
-        adLoader.loadAd(new AdRequest.Builder().build());
+
+                    @Override
+                    public void onUnlockFalse() {
+                        showAd = true;
+                    }
+
+                    @Override
+                    public void onError() {
+                        showAd = false;
+                    }
+                });
+        if (promoCodeUnlock.isUnlock()) {
+            showAd = false;
+        } else {
+            showAd = true;
+            if (promoCode.isExist()) {
+                promoCodeUnlock.unlock();
+            }
+        }
+
+        if (showAd) {
+            setContentView(R.layout.activity_relax);
+
+            MobileAds.initialize(this);
+
+            AdLoader adLoader = new AdLoader.Builder(this, getString(R.string.relax_native_ad_unit_id))
+                    .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                        @Override
+                        public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+                            UnifiedNativeAdView unifiedNativeAdView = (UnifiedNativeAdView) getLayoutInflater().inflate(R.layout.native_ad_layout, null);
+                            mapUnifiedNativeAdToLayout(unifiedNativeAd, unifiedNativeAdView);
+
+                            FrameLayout nativeAdLayout = findViewById(R.id.id_native_ad);
+                            nativeAdLayout.removeAllViews();
+                            nativeAdLayout.addView(unifiedNativeAdView);
+                        }
+                    })
+                    .build();
+            adLoader.loadAd(new AdRequest.Builder().build());
+        } else {
+            setContentView(R.layout.activity_relax_without_ads);
+        }
 
         progressBar = (ProgressBar) findViewById(R.id.relax_progress);
         relaxTime = (TextView) findViewById(R.id.relax_time);
