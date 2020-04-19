@@ -299,6 +299,7 @@ public class TrainingActivity extends Activity {
         }
 
         trainingAnimation = (AnimationDrawable) trainingImage.getBackground();
+        trainingAnimation.setExitFadeDuration(400);
         trainingAnimation.start();
     }
 

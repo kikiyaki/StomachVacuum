@@ -5,10 +5,10 @@
     <item android:drawable="@drawable/table_top2" android:duration="300" />
     <item android:drawable="@drawable/table_top3" android:duration="300" />
     <item android:drawable="@drawable/table_top4" android:duration="300" />
-    <item android:drawable="@drawable/table_top5" android:duration="2000" />
+    <item android:drawable="@drawable/table_top5" android:duration="1000" />
     <item android:drawable="@drawable/table_top6" android:duration="300" />
     <item android:drawable="@drawable/table_top7" android:duration="300" />
     <item android:drawable="@drawable/table_top8" android:duration="300" />
     <item android:drawable="@drawable/table_top9" android:duration="300" />
-    <item android:drawable="@drawable/table_top10" android:duration="3000" />
+    <item android:drawable="@drawable/table_top10" android:duration="4000" />
 </animation-list>

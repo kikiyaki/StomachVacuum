@@ -4,9 +4,9 @@
     <item android:drawable="@drawable/stand_up1" android:duration="300" />
     <item android:drawable="@drawable/stand_up2" android:duration="300" />
     <item android:drawable="@drawable/stand_up3" android:duration="300" />
-    <item android:drawable="@drawable/stand_up4" android:duration="2000" />
+    <item android:drawable="@drawable/stand_up4" android:duration="1000" />
     <item android:drawable="@drawable/stand_up5" android:duration="300" />
     <item android:drawable="@drawable/stand_up6" android:duration="300" />
     <item android:drawable="@drawable/stand_up7" android:duration="300" />
-    <item android:drawable="@drawable/stand_up8" android:duration="3000" />
+    <item android:drawable="@drawable/stand_up8" android:duration="4000" />
 </animation-list>
