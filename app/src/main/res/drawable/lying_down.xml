@@ -5,9 +5,9 @@
     <item android:drawable="@drawable/lying_down2" android:duration="300" />
     <item android:drawable="@drawable/lying_down3" android:duration="300" />
     <item android:drawable="@drawable/lying_down4" android:duration="300" />
-    <item android:drawable="@drawable/lying_down5" android:duration="2000" />
+    <item android:drawable="@drawable/lying_down5" android:duration="1000" />
     <item android:drawable="@drawable/lying_down6" android:duration="300" />
     <item android:drawable="@drawable/lying_down7" android:duration="300" />
     <item android:drawable="@drawable/lying_down8" android:duration="300" />
-    <item android:drawable="@drawable/lying_down9" android:duration="3000" />
+    <item android:drawable="@drawable/lying_down9" android:duration="4000" />
 </animation-list>

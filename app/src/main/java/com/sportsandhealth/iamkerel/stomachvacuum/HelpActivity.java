@@ -62,6 +62,7 @@ public class HelpActivity extends Activity {
         }
 
         animationDrawable = (AnimationDrawable) imageView.getBackground();
+        animationDrawable.setExitFadeDuration(400);
         animationDrawable.start();
 
         backBtn = (FloatingActionButton) findViewById(R.id.help_back);
